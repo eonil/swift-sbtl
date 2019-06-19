@@ -9,7 +9,7 @@ An implementation of Summation B-Tree based List for Swift.
 - Standard `Swift.Array`-like interface.
 - All core operations take `O(log(n))` time.
 - Automatic subtree value summation.
-- Find by sum-offset also takes `O(log(n))` time.
+- Find element index by sum-offset also takes `O(log(n))` time.
 - Full Copy-on-Write support for copy-persistence.
 - Comparable performance with other B-Tree libraries.
 - Plain collection types without summation operation.
@@ -27,7 +27,7 @@ Use `SBTL` type. This type provides these array-like interfaces.
 - `ExpressibleByArrayLiteral`
 - `Equatable where Element: Equatable`
 
-Use `index(for:)` method to find an element for weight offset.
+Use `index(for:)` method to find an element for sum offset.
 
 
 
@@ -81,7 +81,7 @@ summation operations time and cost to zero.
 
 Copy-on-Write
 ------------------
-`SBTL` is fully copy-on-write and optimized for copy-persistent scenario.
+`SBTL` is fully copy-on-write ready, and optimized for copy-persistent scenario.
 
 
 
