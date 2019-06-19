@@ -9,10 +9,23 @@ import Foundation
 
 /// Always sorted set.
 public struct SBTLSet<Element>:
-RandomAccessCollection where
+RandomAccessCollection,
+ExpressibleByArrayLiteral where
 Element: Comparable & SBTLValueProtocol {
     private var impl = SBTL<Element>()
 
+    public init() {}
+    public init<S>(_ s: S) where S: Sequence, S.Element == Element {
+        for e in s {
+            insert(e)
+        }
+    }
+    public init(arrayLiteral elements: Element...) {
+        for e in elements {
+            insert(e)
+        }
+    }
+    
     public var startIndex: Int {
         return 0
     }

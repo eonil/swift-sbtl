@@ -9,7 +9,8 @@ import Foundation
 
 /// Always sorted associative array.
 public struct SBTLMap<Key,Value>:
-RandomAccessCollection where
+RandomAccessCollection,
+ExpressibleByDictionaryLiteral where
 Key: Comparable,
 Value: SBTLValueProtocol {
     public typealias Element = (key: Key, value: Value)
@@ -17,6 +18,12 @@ Value: SBTLValueProtocol {
     fileprivate typealias Pair = SBTLMapPair<Key,Value>
     private var impl = SBTL<Pair>()
 
+    public init() {}
+    public init(dictionaryLiteral elements: (Key, Value)...) {
+        for (k,v) in elements {
+            self[k] = v
+        }
+    }
     public var startIndex: Int {
         return impl.startIndex
     }

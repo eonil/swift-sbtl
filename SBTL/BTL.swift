@@ -15,6 +15,9 @@ BinarySearchProtocol {
     private var impl = SBTL<W>()
 
     public init() {}
+    public init<S>(_ s: S) where S: Sequence, S.Element == Element {
+        append(contentsOf: s)
+    }
     public init(arrayLiteral elements: Element...) {
         append(contentsOf: elements)
     }

@@ -13,6 +13,11 @@ Element: Comparable {
     private var impl = SBTLSet<W>()
 
     public init() {}
+    public init<S>(_ s: S) where S: Sequence, S.Element == Element {
+        for e in s {
+            insert(e)
+        }
+    }
     public init(arrayLiteral elements: Element...) {
         for e in elements {
             insert(e)

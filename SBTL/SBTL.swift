@@ -33,16 +33,17 @@ public protocol SBTLValueProtocol {
 ///   (not good for floating-point types)
 /// - You can find element index by sum offset.
 ///
-public struct SBTL<Value>:
+public struct SBTL<Element>:
 RandomAccessCollection,
 MutableCollection,
 RangeReplaceableCollection,
+ExpressibleByArrayLiteral,
 BinarySearchProtocol where
-Value: SBTLValueProtocol {
+Element: SBTLValueProtocol {
     public private(set) var count = 0
-    public private(set) var sum = Value.Sum.zero
+    public private(set) var sum = Element.Sum.zero
 
-    typealias Content = SBTLContent<Value>
+    typealias Content = SBTLContent<Element>
     private(set) var content = Content.leaf([])
 
     var leafNodeCapacity: Int {
@@ -56,7 +57,7 @@ Value: SBTLValueProtocol {
         // Smaller numbers do the opposite.
         //
         let cacheSize = 4*1024
-        let maxCap = cacheSize / MemoryLayout<Value>.stride
+        let maxCap = cacheSize / MemoryLayout<Element>.stride
         return Swift.max(1,maxCap)
     }
     mutating func balance() {
@@ -86,10 +87,11 @@ Value: SBTLValueProtocol {
     ////
 
     public init() {}
-    public init<S>(_ s: S) where S: Sequence, S.Element == Value {
-        for v in s {
-            insert(v, at: count)
-        }
+    public init<S>(_ s: S) where S: Sequence, S.Element == Element {
+        append(contentsOf: s)
+    }
+    public init(arrayLiteral elements: Element...) {
+        append(contentsOf: elements)
     }
 
     public var startIndex: Int {
@@ -101,7 +103,7 @@ Value: SBTLValueProtocol {
     public func index(after i: Int) -> Int {
         return i + 1
     }
-    public subscript(_ i: Int) -> Value {
+    public subscript(_ i: Int) -> Element {
         get {
             precondition(i < count, "Index is out of range.")
             switch content {
@@ -130,15 +132,15 @@ Value: SBTLValueProtocol {
     }
 
     /// Finds index of value that contains specified sum offset.
-    public func index(for w: Value.Sum) -> Int {
+    public func index(for w: Element.Sum) -> Int {
         return indexAndOffset(for: w).index
     }
-    public typealias IndexAndOffset = (index: Int, offset: Value.Sum)
-    public func indexAndOffset(for w: Value.Sum) -> IndexAndOffset {
+    public typealias IndexAndOffset = (index: Int, offset: Element.Sum)
+    public func indexAndOffset(for w: Element.Sum) -> IndexAndOffset {
         precondition(w < sum)
         switch content {
         case .leaf(let a):
-            var c = Value.Sum.zero
+            var c = Element.Sum.zero
             for (i,v) in a.enumerated() {
                 let d = c + v.sum
                 if (c..<d).contains(w) {
@@ -176,7 +178,7 @@ Value: SBTLValueProtocol {
 //        return a.lowerBound..<b.upperBound
 //    }
 
-    public mutating func insert(_ v: Value, at i: Int) {
+    public mutating func insert(_ v: Element, at i: Int) {
         count += 1
         sum += v.sum
         switch content {
@@ -205,7 +207,7 @@ Value: SBTLValueProtocol {
         }
     }
     @discardableResult
-    public mutating func remove(at i: Int) -> Value {
+    public mutating func remove(at i: Int) -> Element {
         let v = self[i]
         count -= 1
         sum -= v.sum
@@ -218,7 +220,7 @@ Value: SBTLValueProtocol {
             let v = i < a.count ? a.remove(at: i) : b.remove(at: i - a.count)
             if a.count + b.count < leafNodeCapacity / 2 {
                 // Merge.
-                var c = [Value]()
+                var c = [Element]()
                 c.reserveCapacity(a.count + b.count)
                 c.append(contentsOf: a)
                 c.append(contentsOf: b)
@@ -342,11 +344,6 @@ public extension SBTL {
             let k = i + q.lowerBound
             self[k] = e
         }
-    }
-}
-extension SBTL: ExpressibleByArrayLiteral {
-    public init(arrayLiteral elements: Element...) {
-        append(contentsOf: elements)
     }
 }
 extension SBTL: Equatable where Element: Equatable {
