@@ -1,6 +1,6 @@
 //
 //  BTLMap.swift
-//  WBTL
+//  SBTL
 //
 //  Created by Henry on 2019/06/19.
 //
@@ -9,8 +9,8 @@ public struct BTLMap<Key,Value>:
 RandomAccessCollection,
 ExpressibleByDictionaryLiteral where
 Key: Comparable {
-    private typealias W = BTLEmptyWeightValueWrapper<Value>
-    private var impl = WBTLMap<Key,W>()
+    private typealias W = BTLEmptySumValueWrapper<Value>
+    private var impl = SBTLMap<Key,W>()
 
     public init() {}
     public init(dictionaryLiteral elements: (Key, Value)...) {
@@ -35,7 +35,7 @@ Key: Comparable {
     }
 
     public struct Keys: RandomAccessCollection {
-        private var impl: WBTLMap<Key,W>.Keys
+        private var impl: SBTLMap<Key,W>.Keys
         public var startIndex: Int {
             return impl.startIndex
         }
@@ -50,7 +50,7 @@ Key: Comparable {
         }
     }
     public struct Values: RandomAccessCollection {
-        private var impl: WBTLMap<Key,W>.Values
+        private var impl: SBTLMap<Key,W>.Values
         public var startIndex: Int {
             return impl.startIndex
         }

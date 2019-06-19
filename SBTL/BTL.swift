@@ -11,30 +11,30 @@ MutableCollection,
 RangeReplaceableCollection,
 ExpressibleByArrayLiteral,
 BinarySearchProtocol {
-    private typealias W = BTLEmptyWeightValueWrapper<Value>
-    private var wbtl = WBTL<W>()
+    private typealias W = BTLEmptySumValueWrapper<Value>
+    private var impl = SBTL<W>()
 
     public init() {}
     public init(arrayLiteral elements: Element...) {
         append(contentsOf: elements)
     }
     public var startIndex: Int {
-        return wbtl.startIndex
+        return impl.startIndex
     }
     public var endIndex: Int {
-        return wbtl.endIndex
+        return impl.endIndex
     }
     public subscript(_ i: Int) -> Value {
-        get { return wbtl[i].value }
-        set(v) { wbtl[i] = W(v) }
+        get { return impl[i].value }
+        set(v) { impl[i] = W(v) }
     }
     public mutating func insert(_ v: Value, at i: Int) {
-        wbtl.insert(W(v), at: i)
+        impl.insert(W(v), at: i)
     }
     public mutating func remove(at i: Int) -> Value {
-        return wbtl.remove(at: i).value
+        return impl.remove(at: i).value
     }
     public mutating func replaceSubrange<C, R>(_ subrange: R, with newElements: C) where C : Collection, R : RangeExpression, Element == C.Element, Index == R.Bound {
-        return wbtl.replaceSubrange(subrange, with: newElements.map({ W($0) }))
+        return impl.replaceSubrange(subrange, with: newElements.map({ W($0) }))
     }
 }

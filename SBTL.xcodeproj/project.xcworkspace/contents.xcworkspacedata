@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:WBTL.xcodeproj">
+      location = "self:/Users/Eonil/Workshop2/Repo/pub/github.com/eonil/swift-wbtl/SBTL.xcodeproj">
    </FileRef>
 </Workspace>

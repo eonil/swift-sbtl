@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  WBTLBrnchmark
+//  SBTLBenchmark
 //
 //  Created by Henry on 2019/06/17.
 //
@@ -8,8 +8,8 @@
 import Foundation
 import GameKit
 
-extension Int: WBTLValueProtocol {
-    public var weight: Int {
+extension Int: SBTLValueProtocol {
+    public var sum: Int {
         return self
     }
 }
@@ -59,7 +59,7 @@ public protocol AAPerfMeasuringProtocol {
 }
 extension Array: AAPerfMeasuringProtocol {}
 extension List: AAPerfMeasuringProtocol {}
-extension WBTL: AAPerfMeasuringProtocol {}
+extension SBTL: AAPerfMeasuringProtocol {}
 
 struct CRUDNames {
     var get: DB.Name
@@ -178,9 +178,9 @@ runCRUDPackage(List<Int>.self, CRUDNames(
     insert: .btreeInsert,
     update: .btreeUpdate,
     remove: .btreeRemove))
-runCRUDPackage(WBTL<Int>.self, CRUDNames(
-    get: .wbtlGet,
-    insert: .wbtlInsert,
-    update: .wbtlUpdate,
-    remove: .wbtlRemove))
+runCRUDPackage(SBTL<Int>.self, CRUDNames(
+    get: .sbtlGet,
+    insert: .sbtlInsert,
+    update: .sbtlUpdate,
+    remove: .sbtlRemove))
 db.print()

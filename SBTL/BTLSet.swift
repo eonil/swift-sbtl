@@ -1,6 +1,6 @@
 //
 //  BTLSet.swift
-//  WBTL
+//  SBTL
 //
 //  Created by Henry on 2019/06/19.
 //
@@ -9,8 +9,8 @@ public struct BTLSet<Element>:
 RandomAccessCollection,
 ExpressibleByArrayLiteral where
 Element: Comparable {
-    private typealias W = BTLEmptyWeightValueWrapper<Element>
-    private var impl = WBTLSet<W>()
+    private typealias W = BTLEmptySumValueWrapper<Element>
+    private var impl = SBTLSet<W>()
 
     public init() {}
     public init(arrayLiteral elements: Element...) {

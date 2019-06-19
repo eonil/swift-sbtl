@@ -1,16 +1,16 @@
 //
-//  WBTLMockBasedUnitTests.swift
-//  WBTLUnitTests
+//  SBTLMockBasedUnitTests.swift
+//  SBTLUnitTests
 //
 //  Created by Henry on 2019/06/17.
 //
 
 import XCTest
-@testable import WBTL
+@testable import SBTL
 
-class WBTLMockBasedUnitTests: XCTestCase {
+class SBTLMockBasedUnitTests: XCTestCase {
     func test1() {
-        var m = WBTLMock()
+        var m = SBTLMock()
         let n = 4096
         for _ in 0..<n {
             m.stepRandom()
@@ -27,7 +27,7 @@ class WBTLMockBasedUnitTests: XCTestCase {
         }
     }
     func testCase1() {
-        var m = WBTLMock()
+        var m = SBTLMock()
         m.runRandom(2050)
         m.stepRandom()
         XCTAssertEqual(m.sys.count, m.impl.count)
@@ -37,7 +37,7 @@ class WBTLMockBasedUnitTests: XCTestCase {
     }
 
     func testBalancingCase1() {
-        var m = WBTLMock()
+        var m = SBTLMock()
         for _ in 0..<4096 {
             m.appendRandom()
             XCTAssertTrue(m.impl.isWellBalanced())
@@ -48,7 +48,7 @@ class WBTLMockBasedUnitTests: XCTestCase {
         XCTAssertEqual(m.sys, Array(m.impl))
     }
     func testBalancingCase2() {
-        var m = WBTLMock()
+        var m = SBTLMock()
         for _ in 0..<6144 {
             m.appendRandom()
             XCTAssertTrue(m.impl.isEmpty || !m.impl.containsAnyEmptyLeaf())
@@ -61,7 +61,7 @@ class WBTLMockBasedUnitTests: XCTestCase {
         XCTAssertEqual(m.sys, Array(m.impl))
     }
     func testEqualityCase1() {
-        var m = WBTLMock()
+        var m = SBTLMock()
         for _ in 0..<6144 {
             m.appendRandom()
         }
@@ -79,7 +79,7 @@ class WBTLMockBasedUnitTests: XCTestCase {
         }
     }
     func testBalancingCase3() {
-        var m = WBTLMock()
+        var m = SBTLMock()
         for _ in 0..<8192 {
             m.appendRandom()
             XCTAssertTrue(m.impl.isEmpty || !m.impl.containsAnyEmptyLeaf())
@@ -95,7 +95,7 @@ class WBTLMockBasedUnitTests: XCTestCase {
         XCTAssertEqual(m.sys, Array(m.impl))
     }
     func testAppendManyRandom() {
-        var m = WBTLMock()
+        var m = SBTLMock()
         for i in 0..<(100_000) {
             m.appendRandom()
             XCTAssertTrue(m.impl.isEmpty || !m.impl.containsAnyEmptyLeaf())
@@ -110,7 +110,7 @@ class WBTLMockBasedUnitTests: XCTestCase {
         XCTAssertEqual(m.sys, Array(m.impl))
     }
     func testRandomMany() {
-        var m = WBTLMock()
+        var m = SBTLMock()
         for _ in 0..<(100_000) {
             m.appendRandom()
         }

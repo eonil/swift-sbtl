@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45A0884622B9E523000628D0 /* WBTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884522B9E523000628D0 /* WBTLMap.swift */; };
-		45A0884822B9E529000628D0 /* WBTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884722B9E529000628D0 /* WBTLSet.swift */; };
+		45A0884622B9E523000628D0 /* SBTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884522B9E523000628D0 /* SBTLMap.swift */; };
+		45A0884822B9E529000628D0 /* SBTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884722B9E529000628D0 /* SBTLSet.swift */; };
 		45A0884A22B9FC03000628D0 /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884922B9FC03000628D0 /* BinarySearch.swift */; };
-		45A0884B22BA0333000628D0 /* WBTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884522B9E523000628D0 /* WBTLMap.swift */; };
-		45A0884C22BA0333000628D0 /* WBTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884722B9E529000628D0 /* WBTLSet.swift */; };
+		45A0884B22BA0333000628D0 /* SBTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884522B9E523000628D0 /* SBTLMap.swift */; };
+		45A0884C22BA0333000628D0 /* SBTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884722B9E529000628D0 /* SBTLSet.swift */; };
 		45A0884D22BA0333000628D0 /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884922B9FC03000628D0 /* BinarySearch.swift */; };
 		45A0885022BA037D000628D0 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884E22BA037D000628D0 /* DB.swift */; };
 		45A0885122BA037D000628D0 /* FormattingUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884F22BA037D000628D0 /* FormattingUtilities.swift */; };
@@ -33,21 +33,21 @@
 		45A0887222BA0429000628D0 /* BTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0886222BA0429000628D0 /* BTreeNode.swift */; };
 		45A0887722BA5651000628D0 /* BTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887622BA5651000628D0 /* BTLMap.swift */; };
 		45A0887922BA565A000628D0 /* BTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887822BA565A000628D0 /* BTLSet.swift */; };
-		45A0887B22BA5A96000628D0 /* BTLEmptyWeightValueWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887A22BA5A96000628D0 /* BTLEmptyWeightValueWrapper.swift */; };
+		45A0887B22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887A22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift */; };
 		45A0887C22BA5B9D000628D0 /* BTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887822BA565A000628D0 /* BTLSet.swift */; };
 		45A0887D22BA5B9D000628D0 /* BTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887622BA5651000628D0 /* BTLMap.swift */; };
-		45A0887E22BA5B9D000628D0 /* BTLEmptyWeightValueWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887A22BA5A96000628D0 /* BTLEmptyWeightValueWrapper.swift */; };
+		45A0887E22BA5B9D000628D0 /* BTLEmptySumValueWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887A22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift */; };
 		45B81C8B22B77CE600306395 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C8A22B77CE600306395 /* main.swift */; };
 		45B81C9522B77D0300306395 /* BTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9322B77D0300306395 /* BTL.swift */; };
-		45B81C9622B77D0300306395 /* WBTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9422B77D0300306395 /* WBTL.swift */; };
+		45B81C9622B77D0300306395 /* SBTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9422B77D0300306395 /* SBTL.swift */; };
 		45B81C9722B77D1000306395 /* BTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9322B77D0300306395 /* BTL.swift */; };
-		45B81C9822B77D1000306395 /* WBTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9422B77D0300306395 /* WBTL.swift */; };
-		45B81CA022B77D2500306395 /* WBTLUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9F22B77D2500306395 /* WBTLUnitTests.swift */; };
-		45B81CA222B77D2500306395 /* libWBTL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B81C7A22B77CD200306395 /* libWBTL.a */; };
+		45B81C9822B77D1000306395 /* SBTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9422B77D0300306395 /* SBTL.swift */; };
+		45B81CA022B77D2500306395 /* SBTLUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9F22B77D2500306395 /* SBTLUnitTests.swift */; };
+		45B81CA222B77D2500306395 /* libSBTL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B81C7A22B77CD200306395 /* libSBTL.a */; };
 		45B81CA922B77EE100306395 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B81CA822B77EE100306395 /* GameKit.framework */; };
-		45B81CAB22B77EF100306395 /* WBTLMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81CAA22B77EF100306395 /* WBTLMock.swift */; };
+		45B81CAB22B77EF100306395 /* SBTLMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81CAA22B77EF100306395 /* SBTLMock.swift */; };
 		45B81CB122B77F7600306395 /* ReproducibleRPNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81CB022B77F7600306395 /* ReproducibleRPNG.swift */; };
-		45B81CB322B781B000306395 /* WBTLMockBasedUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81CB222B781B000306395 /* WBTLMockBasedUnitTests.swift */; };
+		45B81CB322B781B000306395 /* SBTLMockBasedUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81CB222B781B000306395 /* SBTLMockBasedUnitTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +73,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		45A0884522B9E523000628D0 /* WBTLMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTLMap.swift; sourceTree = "<group>"; };
-		45A0884722B9E529000628D0 /* WBTLSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTLSet.swift; sourceTree = "<group>"; };
+		45A0884522B9E523000628D0 /* SBTLMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBTLMap.swift; sourceTree = "<group>"; };
+		45A0884722B9E529000628D0 /* SBTLSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBTLSet.swift; sourceTree = "<group>"; };
 		45A0884922B9FC03000628D0 /* BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
 		45A0884E22BA037D000628D0 /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		45A0884F22BA037D000628D0 /* FormattingUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormattingUtilities.swift; sourceTree = "<group>"; };
@@ -99,19 +99,19 @@
 		45A0887522BA3CED000628D0 /* CRUD1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CRUD1.png; sourceTree = "<group>"; };
 		45A0887622BA5651000628D0 /* BTLMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTLMap.swift; sourceTree = "<group>"; };
 		45A0887822BA565A000628D0 /* BTLSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTLSet.swift; sourceTree = "<group>"; };
-		45A0887A22BA5A96000628D0 /* BTLEmptyWeightValueWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTLEmptyWeightValueWrapper.swift; sourceTree = "<group>"; };
-		45B81C7A22B77CD200306395 /* libWBTL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libWBTL.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		45B81C8822B77CE600306395 /* WBTLBenchmark */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WBTLBenchmark; sourceTree = BUILT_PRODUCTS_DIR; };
+		45A0887A22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTLEmptySumValueWrapper.swift; sourceTree = "<group>"; };
+		45B81C7A22B77CD200306395 /* libSBTL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSBTL.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		45B81C8822B77CE600306395 /* SBTLBenchmark */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SBTLBenchmark; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B81C8A22B77CE600306395 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		45B81C9322B77D0300306395 /* BTL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTL.swift; sourceTree = "<group>"; };
-		45B81C9422B77D0300306395 /* WBTL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBTL.swift; sourceTree = "<group>"; };
-		45B81C9D22B77D2500306395 /* WBTLUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WBTLUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		45B81C9F22B77D2500306395 /* WBTLUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTLUnitTests.swift; sourceTree = "<group>"; };
+		45B81C9422B77D0300306395 /* SBTL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBTL.swift; sourceTree = "<group>"; };
+		45B81C9D22B77D2500306395 /* SBTLUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SBTLUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		45B81C9F22B77D2500306395 /* SBTLUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBTLUnitTests.swift; sourceTree = "<group>"; };
 		45B81CA122B77D2500306395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45B81CA822B77EE100306395 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		45B81CAA22B77EF100306395 /* WBTLMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTLMock.swift; sourceTree = "<group>"; };
+		45B81CAA22B77EF100306395 /* SBTLMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBTLMock.swift; sourceTree = "<group>"; };
 		45B81CB022B77F7600306395 /* ReproducibleRPNG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReproducibleRPNG.swift; sourceTree = "<group>"; };
-		45B81CB222B781B000306395 /* WBTLMockBasedUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTLMockBasedUnitTests.swift; sourceTree = "<group>"; };
+		45B81CB222B781B000306395 /* SBTLMockBasedUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBTLMockBasedUnitTests.swift; sourceTree = "<group>"; };
 		45B81CB422B79C0100306395 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,7 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45B81CA922B77EE100306395 /* GameKit.framework in Frameworks */,
-				45B81CA222B77D2500306395 /* libWBTL.a in Frameworks */,
+				45B81CA222B77D2500306395 /* libSBTL.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,9 +169,9 @@
 			isa = PBXGroup;
 			children = (
 				45B81CB422B79C0100306395 /* README.md */,
-				45B81C7C22B77CD200306395 /* WBTL */,
-				45B81C9E22B77D2500306395 /* WBTLUnitTests */,
-				45B81C8922B77CE600306395 /* WBTLBenchmark */,
+				45B81C7C22B77CD200306395 /* SBTL */,
+				45B81C9E22B77D2500306395 /* SBTLUnitTests */,
+				45B81C8922B77CE600306395 /* SBTLBenchmark */,
 				45B81C7B22B77CD200306395 /* Products */,
 				45B81C9122B77CF800306395 /* Frameworks */,
 			);
@@ -180,29 +180,29 @@
 		45B81C7B22B77CD200306395 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				45B81C7A22B77CD200306395 /* libWBTL.a */,
-				45B81C8822B77CE600306395 /* WBTLBenchmark */,
-				45B81C9D22B77D2500306395 /* WBTLUnitTests.xctest */,
+				45B81C7A22B77CD200306395 /* libSBTL.a */,
+				45B81C8822B77CE600306395 /* SBTLBenchmark */,
+				45B81C9D22B77D2500306395 /* SBTLUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		45B81C7C22B77CD200306395 /* WBTL */ = {
+		45B81C7C22B77CD200306395 /* SBTL */ = {
 			isa = PBXGroup;
 			children = (
 				45B81C9322B77D0300306395 /* BTL.swift */,
 				45A0887822BA565A000628D0 /* BTLSet.swift */,
 				45A0887622BA5651000628D0 /* BTLMap.swift */,
-				45A0887A22BA5A96000628D0 /* BTLEmptyWeightValueWrapper.swift */,
-				45B81C9422B77D0300306395 /* WBTL.swift */,
-				45A0884722B9E529000628D0 /* WBTLSet.swift */,
-				45A0884522B9E523000628D0 /* WBTLMap.swift */,
+				45A0887A22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift */,
+				45B81C9422B77D0300306395 /* SBTL.swift */,
+				45A0884722B9E529000628D0 /* SBTLSet.swift */,
+				45A0884522B9E523000628D0 /* SBTLMap.swift */,
 				45A0884922B9FC03000628D0 /* BinarySearch.swift */,
 			);
-			path = WBTL;
+			path = SBTL;
 			sourceTree = "<group>";
 		};
-		45B81C8922B77CE600306395 /* WBTLBenchmark */ = {
+		45B81C8922B77CE600306395 /* SBTLBenchmark */ = {
 			isa = PBXGroup;
 			children = (
 				45B81C8A22B77CE600306395 /* main.swift */,
@@ -213,7 +213,7 @@
 				45A0887422BA3CED000628D0 /* Perf.numbers */,
 				45A0885222BA0429000628D0 /* BTree */,
 			);
-			path = WBTLBenchmark;
+			path = SBTLBenchmark;
 			sourceTree = "<group>";
 		};
 		45B81C9122B77CF800306395 /* Frameworks */ = {
@@ -224,16 +224,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		45B81C9E22B77D2500306395 /* WBTLUnitTests */ = {
+		45B81C9E22B77D2500306395 /* SBTLUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				45B81C9F22B77D2500306395 /* WBTLUnitTests.swift */,
-				45B81CB222B781B000306395 /* WBTLMockBasedUnitTests.swift */,
-				45B81CAA22B77EF100306395 /* WBTLMock.swift */,
+				45B81C9F22B77D2500306395 /* SBTLUnitTests.swift */,
+				45B81CB222B781B000306395 /* SBTLMockBasedUnitTests.swift */,
+				45B81CAA22B77EF100306395 /* SBTLMock.swift */,
 				45B81CB022B77F7600306395 /* ReproducibleRPNG.swift */,
 				45B81CA122B77D2500306395 /* Info.plist */,
 			);
-			path = WBTLUnitTests;
+			path = SBTLUnitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,9 +249,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		45B81C7922B77CD200306395 /* WBTL */ = {
+		45B81C7922B77CD200306395 /* SBTL */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 45B81C8322B77CD200306395 /* Build configuration list for PBXNativeTarget "WBTL" */;
+			buildConfigurationList = 45B81C8322B77CD200306395 /* Build configuration list for PBXNativeTarget "SBTL" */;
 			buildPhases = (
 				45B81C7622B77CD200306395 /* Headers */,
 				45B81C7722B77CD200306395 /* Sources */,
@@ -261,14 +261,14 @@
 			);
 			dependencies = (
 			);
-			name = WBTL;
+			name = SBTL;
 			productName = WBTL;
-			productReference = 45B81C7A22B77CD200306395 /* libWBTL.a */;
+			productReference = 45B81C7A22B77CD200306395 /* libSBTL.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		45B81C8722B77CE600306395 /* WBTLBenchmark */ = {
+		45B81C8722B77CE600306395 /* SBTLBenchmark */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 45B81C8C22B77CE600306395 /* Build configuration list for PBXNativeTarget "WBTLBenchmark" */;
+			buildConfigurationList = 45B81C8C22B77CE600306395 /* Build configuration list for PBXNativeTarget "SBTLBenchmark" */;
 			buildPhases = (
 				45B81C8422B77CE600306395 /* Sources */,
 				45B81C8522B77CE600306395 /* Frameworks */,
@@ -278,14 +278,14 @@
 			);
 			dependencies = (
 			);
-			name = WBTLBenchmark;
+			name = SBTLBenchmark;
 			productName = WBTLBrnchmark;
-			productReference = 45B81C8822B77CE600306395 /* WBTLBenchmark */;
+			productReference = 45B81C8822B77CE600306395 /* SBTLBenchmark */;
 			productType = "com.apple.product-type.tool";
 		};
-		45B81C9C22B77D2500306395 /* WBTLUnitTests */ = {
+		45B81C9C22B77D2500306395 /* SBTLUnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 45B81CA522B77D2500306395 /* Build configuration list for PBXNativeTarget "WBTLUnitTests" */;
+			buildConfigurationList = 45B81CA522B77D2500306395 /* Build configuration list for PBXNativeTarget "SBTLUnitTests" */;
 			buildPhases = (
 				45B81C9922B77D2500306395 /* Sources */,
 				45B81C9A22B77D2500306395 /* Frameworks */,
@@ -296,9 +296,9 @@
 			dependencies = (
 				45B81CA422B77D2500306395 /* PBXTargetDependency */,
 			);
-			name = WBTLUnitTests;
+			name = SBTLUnitTests;
 			productName = WBTLUnitTests;
-			productReference = 45B81C9D22B77D2500306395 /* WBTLUnitTests.xctest */;
+			productReference = 45B81C9D22B77D2500306395 /* SBTLUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -322,7 +322,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 45B81C7322B77CC000306395 /* Build configuration list for PBXProject "WBTL" */;
+			buildConfigurationList = 45B81C7322B77CC000306395 /* Build configuration list for PBXProject "SBTL" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -334,9 +334,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				45B81C7922B77CD200306395 /* WBTL */,
-				45B81C9C22B77D2500306395 /* WBTLUnitTests */,
-				45B81C8722B77CE600306395 /* WBTLBenchmark */,
+				45B81C7922B77CD200306395 /* SBTL */,
+				45B81C9C22B77D2500306395 /* SBTLUnitTests */,
+				45B81C8722B77CE600306395 /* SBTLBenchmark */,
 			);
 		};
 /* End PBXProject section */
@@ -357,11 +357,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				45A0887922BA565A000628D0 /* BTLSet.swift in Sources */,
-				45A0884822B9E529000628D0 /* WBTLSet.swift in Sources */,
-				45B81C9622B77D0300306395 /* WBTL.swift in Sources */,
+				45A0884822B9E529000628D0 /* SBTLSet.swift in Sources */,
+				45B81C9622B77D0300306395 /* SBTL.swift in Sources */,
 				45B81C9522B77D0300306395 /* BTL.swift in Sources */,
-				45A0887B22BA5A96000628D0 /* BTLEmptyWeightValueWrapper.swift in Sources */,
-				45A0884622B9E523000628D0 /* WBTLMap.swift in Sources */,
+				45A0887B22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift in Sources */,
+				45A0884622B9E523000628D0 /* SBTLMap.swift in Sources */,
 				45A0884A22B9FC03000628D0 /* BinarySearch.swift in Sources */,
 				45A0887722BA5651000628D0 /* BTLMap.swift in Sources */,
 			);
@@ -371,7 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45B81C9822B77D1000306395 /* WBTL.swift in Sources */,
+				45B81C9822B77D1000306395 /* SBTL.swift in Sources */,
 				45A0886F22BA0429000628D0 /* BTreeIndex.swift in Sources */,
 				45A0886A22BA0429000628D0 /* List.swift in Sources */,
 				45A0886C22BA0429000628D0 /* BTree.swift in Sources */,
@@ -379,7 +379,7 @@
 				45B81C9722B77D1000306395 /* BTL.swift in Sources */,
 				45A0886422BA0429000628D0 /* BTreeComparisons.swift in Sources */,
 				45A0884D22BA0333000628D0 /* BinarySearch.swift in Sources */,
-				45A0887E22BA5B9D000628D0 /* BTLEmptyWeightValueWrapper.swift in Sources */,
+				45A0887E22BA5B9D000628D0 /* BTLEmptySumValueWrapper.swift in Sources */,
 				45A0887122BA0429000628D0 /* Weak.swift in Sources */,
 				45A0885122BA037D000628D0 /* FormattingUtilities.swift in Sources */,
 				45A0886D22BA0429000628D0 /* BTreeBuilder.swift in Sources */,
@@ -389,14 +389,14 @@
 				45A0887022BA0429000628D0 /* BTreeMerger.swift in Sources */,
 				45A0886922BA0429000628D0 /* BridgedList.swift in Sources */,
 				45B81C8B22B77CE600306395 /* main.swift in Sources */,
-				45A0884C22BA0333000628D0 /* WBTLSet.swift in Sources */,
+				45A0884C22BA0333000628D0 /* SBTLSet.swift in Sources */,
 				45A0886722BA0429000628D0 /* BTreePath.swift in Sources */,
 				45A0887222BA0429000628D0 /* BTreeNode.swift in Sources */,
 				45A0887C22BA5B9D000628D0 /* BTLSet.swift in Sources */,
 				45A0886B22BA0429000628D0 /* BTreeCursor.swift in Sources */,
 				45A0886622BA0429000628D0 /* Compatibility.swift in Sources */,
 				45A0886522BA0429000628D0 /* SortedBag.swift in Sources */,
-				45A0884B22BA0333000628D0 /* WBTLMap.swift in Sources */,
+				45A0884B22BA0333000628D0 /* SBTLMap.swift in Sources */,
 				45A0885022BA037D000628D0 /* DB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,10 +405,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45B81CB322B781B000306395 /* WBTLMockBasedUnitTests.swift in Sources */,
-				45B81CAB22B77EF100306395 /* WBTLMock.swift in Sources */,
+				45B81CB322B781B000306395 /* SBTLMockBasedUnitTests.swift in Sources */,
+				45B81CAB22B77EF100306395 /* SBTLMock.swift in Sources */,
 				45B81CB122B77F7600306395 /* ReproducibleRPNG.swift in Sources */,
-				45B81CA022B77D2500306395 /* WBTLUnitTests.swift in Sources */,
+				45B81CA022B77D2500306395 /* SBTLUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,7 +417,7 @@
 /* Begin PBXTargetDependency section */
 		45B81CA422B77D2500306395 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 45B81C7922B77CD200306395 /* WBTL */;
+			target = 45B81C7922B77CD200306395 /* SBTL */;
 			targetProxy = 45B81CA322B77D2500306395 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -743,7 +743,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = WBTLUnitTests/Info.plist;
+				INFOPLIST_FILE = SBTLUnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -753,7 +753,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = Eonil.WBTLUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = Eonil.SBTLUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -811,7 +811,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = WBTLUnitTests/Info.plist;
+				INFOPLIST_FILE = SBTLUnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -820,7 +820,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = Eonil.WBTLUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = Eonil.SBTLUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -833,7 +833,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		45B81C7322B77CC000306395 /* Build configuration list for PBXProject "WBTL" */ = {
+		45B81C7322B77CC000306395 /* Build configuration list for PBXProject "SBTL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				45B81C7422B77CC000306395 /* Debug */,
@@ -842,7 +842,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		45B81C8322B77CD200306395 /* Build configuration list for PBXNativeTarget "WBTL" */ = {
+		45B81C8322B77CD200306395 /* Build configuration list for PBXNativeTarget "SBTL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				45B81C8122B77CD200306395 /* Debug */,
@@ -851,7 +851,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		45B81C8C22B77CE600306395 /* Build configuration list for PBXNativeTarget "WBTLBenchmark" */ = {
+		45B81C8C22B77CE600306395 /* Build configuration list for PBXNativeTarget "SBTLBenchmark" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				45B81C8D22B77CE600306395 /* Debug */,
@@ -860,7 +860,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		45B81CA522B77D2500306395 /* Build configuration list for PBXNativeTarget "WBTLUnitTests" */ = {
+		45B81CA522B77D2500306395 /* Build configuration list for PBXNativeTarget "SBTLUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				45B81CA622B77D2500306395 /* Debug */,

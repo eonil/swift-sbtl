@@ -1,17 +1,17 @@
 //
-//  WBTLMock.swift
-//  WBTLUnitTests
+//  SBTLMock.swift
+//  SBTLUnitTests
 //
 //  Created by Henry on 2019/06/17.
 //
 
 import GameKit
-@testable import WBTL
+@testable import SBTL
 
-struct WBTLMock {
+struct SBTLMock {
     private(set) var rprng = ReproducibleRPNG(1024*1024)
     private(set) var sys = [Int]()
-    private(set) var impl = WBTL<Int>()
+    private(set) var impl = SBTL<Int>()
 
     init() {
     }
@@ -69,7 +69,7 @@ struct WBTLMock {
     }
 }
 
-extension WBTLMock {
+extension SBTLMock {
     mutating func appendRandom() {
         let v = rprng.nextWithRotation()
         sys.append(v)
@@ -78,7 +78,7 @@ extension WBTLMock {
 
 }
 
-extension WBTL {
+extension SBTL {
     func countHeight() -> Int {
         switch content {
         case .leaf(_):
@@ -121,5 +121,11 @@ extension WBTL {
         case .leaf(let a): return a.isEmpty
         case .branch(let a, let b): return a.containsAnyEmptyLeaf() || b.containsAnyEmptyLeaf()
         }
+    }
+}
+
+extension Int: SBTLValueProtocol {
+    public var sum: Int {
+        return self
     }
 }

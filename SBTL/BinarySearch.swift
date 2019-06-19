@@ -1,6 +1,6 @@
 //
 //  BinarySearch.swift
-//  WBTL
+//  SBTL
 //
 //  Created by Henry on 2019/06/19.
 //
@@ -24,19 +24,22 @@ Index == Int {
     ///
     /// value `55` returns `2`.
     ///
+    /// - Parameter with k:
+    ///     A function that converts an element into key.
+    ///
     func findInsertionPoint<C>(
-        for e: Self.Element,
+        for x: C,
         in r: Range<Int>,
-        key: (Self.Element) -> C)
+        with k: (Self.Element) -> C)
         -> Int
     where
         C: Comparable
 }
 extension BinarySearchProtocol {
     func findInsertionPoint<C>(
-        for e: Element,
+        for x: C,
         in r: Range<Int>,
-        key k: (Element) -> C)
+        with k: (Element) -> C)
         -> Int
     where
         C: Comparable
@@ -47,11 +50,10 @@ extension BinarySearchProtocol {
         case 1:
             return r.upperBound
         default:
-            let x = k(e)
             let i = r.lowerBound + (r.count / 2)
             let y = k(self[i])
             let s = x < y ? r[..<i] : r[i...]
-            return findInsertionPoint(for: e, in: s, key: k)
+            return findInsertionPoint(for: x, in: s, with: k)
         }
     }
 }

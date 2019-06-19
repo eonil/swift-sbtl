@@ -1,47 +1,21 @@
 //
-//  WBTLMap.swift
-//  WBTL
+//  SBTLMap.swift
+//  SBTL
 //
 //  Created by Henry on 2019/06/19.
 //
 
 import Foundation
 
-public struct WBTLMap<Key,Value>:
+/// Always sorted associative array.
+public struct SBTLMap<Key,Value>:
 RandomAccessCollection where
 Key: Comparable,
-Value: WBTLValueProtocol {
+Value: SBTLValueProtocol {
     public typealias Element = (key: Key, value: Value)
 
-    fileprivate typealias Pair = WBTLMapPair<Key,Value>
-    private var impl = WBTL<Pair>()
-
-    /// Binary search.
-    /// - Complexity: O(log2(n))
-    ///
-    /// Internals
-    /// ---------
-    ///
-    /// For this given dataset
-    ///
-    ///     0   1   2   3
-    ///     22  33  88  99
-    ///
-    /// value `55` returns `2`.
-    ///
-    private func findInsertionPoint(for k: Key, in r: Range<Int>) -> Int {
-        switch r.count {
-        case 0:
-            return r.lowerBound
-        case 1:
-            return r.upperBound
-        default:
-            let i = r.lowerBound + (r.count / 2)
-            let x = impl[i]
-            let s = k < x.element.key ? r[..<i] : r[i...]
-            return findInsertionPoint(for: k, in: s)
-        }
-    }
+    fileprivate typealias Pair = SBTLMapPair<Key,Value>
+    private var impl = SBTL<Pair>()
 
     public var startIndex: Int {
         return impl.startIndex
@@ -49,6 +23,7 @@ Value: WBTLValueProtocol {
     public var endIndex: Int {
         return impl.endIndex
     }
+
     public subscript(_ i: Int) -> Element {
         return impl[i].element
     }
@@ -58,7 +33,10 @@ Value: WBTLValueProtocol {
             return impl[i].element.value
         }
         set(v) {
-            let i = findInsertionPoint(for: k, in: indices)
+            let i = impl.findInsertionPoint(
+                for: k,
+                in: indices,
+                with: {$0.element.key})
             let x = self[i]
             if x.key == k {
                 // Matched.
@@ -83,33 +61,44 @@ Value: WBTLValueProtocol {
         }
     }
 
+    public func index(for w: Value.Sum) -> Int {
+        return impl.index(for: w)
+    }
+    public typealias IndexAndOffset = SBTL<Value>.IndexAndOffset
+    public func indexAndOffset(for w: Value.Sum) -> IndexAndOffset {
+        return impl.indexAndOffset(for: w)
+    }
+
     public var keys: Keys {
-        return Keys(impl: self)
+        return Keys(impl: impl)
     }
     public struct Keys: RandomAccessCollection {
-        fileprivate private(set) var impl: WBTLMap
+        fileprivate private(set) var impl: SBTL<Pair>
         public var startIndex: Int {
             return impl.startIndex
         }
         public var endIndex: Int {
             return impl.endIndex
         }
-        public func firstIndex(of key: Key) -> Int? {
-            let i = impl.findInsertionPoint(for: key, in: impl.indices)
+        public func firstIndex(of k: Key) -> Int? {
+            let i = impl.findInsertionPoint(
+                for: k,
+                in: impl.indices,
+                with: {$0.element.key})
             let x = impl[i]
-            guard x.key == key else { return nil }
+            guard x.element.key == k else { return nil }
             return i
         }
         public subscript(_ i: Int) -> Key {
-            return impl[i].key
+            return impl[i].element.key
         }
     }
 
     public var values: Values {
-        return Values(impl: self)
+        return Values(impl: impl)
     }
     public struct Values: RandomAccessCollection {
-        fileprivate private(set) var impl: WBTLMap
+        fileprivate private(set) var impl: SBTL<Pair>
         public var startIndex: Int {
             return impl.startIndex
         }
@@ -117,27 +106,27 @@ Value: WBTLValueProtocol {
             return impl.endIndex
         }
         public subscript(_ i: Int) -> Value {
-            return impl[i].value
+            return impl[i].element.value
         }
     }
 }
 
-private struct WBTLMapPair<Key,Value>: Comparable, WBTLValueProtocol where
+private struct SBTLMapPair<Key,Value>: Comparable, SBTLValueProtocol where
 Key: Comparable,
-Value: WBTLValueProtocol {
-    typealias Weight = Value.Weight
+Value: SBTLValueProtocol {
+    typealias Sum = Value.Sum
     var element: (key: Key, value: Value)
-    var weight: Weight {
-        return element.value.weight
+    var sum: Sum {
+        return element.value.sum
     }
 
     /// This is partial comparison based only on key.
-    static func < (lhs: WBTLMapPair<Key, Value>, rhs: WBTLMapPair<Key, Value>) -> Bool {
+    static func < (lhs: SBTLMapPair<Key, Value>, rhs: SBTLMapPair<Key, Value>) -> Bool {
         return lhs.element.key < rhs.element.key
     }
 
     /// This is partial equality based only on key.
-    static func == (lhs: WBTLMapPair<Key, Value>, rhs: WBTLMapPair<Key, Value>) -> Bool {
+    static func == (lhs: SBTLMapPair<Key, Value>, rhs: SBTLMapPair<Key, Value>) -> Bool {
         return lhs.element.key == rhs.element.key
     }
 }

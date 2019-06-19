@@ -28,10 +28,10 @@ enum DBColumnName: CustomStringConvertible {
     case btreeUpdate
     case btreeRemove
 
-    case wbtlGet
-    case wbtlInsert
-    case wbtlUpdate
-    case wbtlRemove
+    case sbtlGet
+    case sbtlInsert
+    case sbtlUpdate
+    case sbtlRemove
 
     var description: String {
         switch self {
@@ -43,10 +43,10 @@ enum DBColumnName: CustomStringConvertible {
         case .btreeInsert:  return "BTree.List Insert"
         case .btreeUpdate:  return "BTree.List Update"
         case .btreeRemove:  return "BTree.List Remove"
-        case .wbtlGet:       return "WBTL Get"
-        case .wbtlInsert:    return "WBTL Insert"
-        case .wbtlUpdate:    return "WBTL Update"
-        case .wbtlRemove:    return "WBTL Remove"
+        case .sbtlGet:       return "SBTL Get"
+        case .sbtlInsert:    return "SBTL Insert"
+        case .sbtlUpdate:    return "SBTL Update"
+        case .sbtlRemove:    return "SBTL Remove"
         }
     }
 }
@@ -76,7 +76,7 @@ struct DB {
         let ns = [
             .stdGet, .stdInsert, .stdUpdate, .stdRemove,
             .btreeGet, .btreeInsert, .btreeUpdate, .btreeRemove,
-            .wbtlGet, .wbtlInsert, .wbtlUpdate, .wbtlRemove,
+            .sbtlGet, .sbtlInsert, .sbtlUpdate, .sbtlRemove,
         ] as [Name]
         Swift.print(ns.map({ n in "\(n)" }).joined(separator: ","))
         Swift.print((0..<ns.count).map({ _ in "0" }).joined(separator: ","))

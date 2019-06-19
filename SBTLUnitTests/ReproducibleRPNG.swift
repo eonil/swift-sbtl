@@ -1,6 +1,6 @@
 //
 //  ReproducibleRPNG.swift
-//  WBTLUnitTests
+//  SBTLUnitTests
 //
 //  Created by Henry on 2019/06/17.
 //

@@ -1,16 +1,16 @@
 //
-//  WBTLUnitTests.swift
-//  WBTLUnitTests
+//  SBTLUnitTests.swift
+//  SBTLUnitTests
 //
 //  Created by Henry on 2019/06/17.
 //
 
 import XCTest
-@testable import WBTL
+@testable import SBTL
 
-class WBTLUnitTests: XCTestCase {
+class SBTLUnitTests: XCTestCase {
     func test1() {
-        typealias L = WBTL<Int>
+        typealias L = SBTL<Int>
         var a = L()
         XCTAssertEqual(a.count, 0)
 
@@ -25,7 +25,7 @@ class WBTLUnitTests: XCTestCase {
         XCTAssertEqual(Array(a), [])
     }
     func test100() {
-        typealias L = WBTL<Int>
+        typealias L = SBTL<Int>
         var a = L()
         XCTAssertEqual(a.count, 0)
         XCTAssertEqual(a.weight, 0)
@@ -45,7 +45,7 @@ class WBTLUnitTests: XCTestCase {
         XCTAssertEqual(Array(a), [])
     }
     func testCase1() {
-        typealias L = WBTL<Int>
+        typealias L = SBTL<Int>
         var a = L()
         XCTAssertEqual(a.count, 0)
         XCTAssertEqual(a.weight, 0)
@@ -69,7 +69,7 @@ class WBTLUnitTests: XCTestCase {
         }
     }
     func testCase2() {
-        typealias L = WBTL<Int>
+        typealias L = SBTL<Int>
         var a = L()
         var b = [Int]()
         XCTAssertEqual(a.count, 0)
@@ -97,7 +97,7 @@ class WBTLUnitTests: XCTestCase {
         }
     }
     func test10000() {
-        typealias L = WBTL<Int>
+        typealias L = SBTL<Int>
         var a = L()
         XCTAssertEqual(a.count, 0)
 
@@ -124,11 +124,5 @@ class WBTLUnitTests: XCTestCase {
         XCTAssertEqual(a.count, 0)
         XCTAssertEqual(a.weight, 0)
         XCTAssertEqual(Array(a), [])
-    }
-}
-
-extension Int: WBTLValueProtocol {
-    public var weight: Int {
-        return self
     }
 }

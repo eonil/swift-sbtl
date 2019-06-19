@@ -1,16 +1,16 @@
 //
-//  WBTL.swift
+//  SBTL.swift
 //  CodeView3
 //
 //  Created by Henry on 2019/06/17.
 //
 
-public protocol WBTLValueProtocol {
-    associatedtype Weight: AdditiveArithmetic, Comparable
-    var weight: Weight { get }
+public protocol SBTLValueProtocol {
+    associatedtype Sum: AdditiveArithmetic, Comparable
+    var sum: Sum { get }
 }
 
-/// Quick and simple weighted B-Tree based list.
+/// Quick and simple summation B-Tree based list.
 ///
 /// Point of B-Tree
 /// ---------------
@@ -21,28 +21,28 @@ public protocol WBTLValueProtocol {
 /// - Keep multiple items in leaf node.
 /// - Always have 2 children for simpler balancing implementation.
 /// - Provide Copy-on-Write automatically.
-/// - Balancing is done for shorter depth, and for weight distribution.
+/// - Balancing is done for shorter depth, and for sum distribution.
 ///
 ///
 ///
-/// Weighting Attributes
+/// Summation Attributes
 /// --------------------
-/// - Weight is just a property of value.
-/// - `WBTL` provides automatic summation of all weights in subtree.
-/// - Weight summation is delta accumulation based.
+/// - Sum is just a property of value.
+/// - `SBTL` provides automatic summation of all values in subtree.
+/// - Summation is delta accumulation based.
 ///   (not good for floating-point types)
-/// - You can look-up offset by weight.
+/// - You can find element index by sum offset.
 ///
-public struct WBTL<Value>:
+public struct SBTL<Value>:
 RandomAccessCollection,
 MutableCollection,
 RangeReplaceableCollection,
 BinarySearchProtocol where
-Value: WBTLValueProtocol {
+Value: SBTLValueProtocol {
     public private(set) var count = 0
-    public private(set) var weight = Value.Weight.zero
+    public private(set) var weight = Value.Sum.zero
 
-    typealias Content = WBTLContent<Value>
+    typealias Content = SBTLContent<Value>
     private(set) var content = Content.leaf([])
 
     var leafNodeCapacity: Int {
@@ -111,8 +111,8 @@ Value: WBTLValueProtocol {
         }
         set(v) {
             precondition(i < count, "Index is out of range.")
-            weight -= self[i].weight
-            weight += v.weight
+            weight -= self[i].sum
+            weight += v.sum
             switch content {
             case .leaf(var a):
                 a[i] = v
@@ -129,18 +129,18 @@ Value: WBTLValueProtocol {
         }
     }
 
-    /// Finds index of value that contains specified weight point.
-    public func index(for w: Value.Weight) -> Int {
+    /// Finds index of value that contains specified sum offset.
+    public func index(for w: Value.Sum) -> Int {
         return indexAndOffset(for: w).index
     }
-    public typealias IndexAndOffset = (index: Int, offset: Value.Weight)
-    public func indexAndOffset(for w: Value.Weight) -> IndexAndOffset {
+    public typealias IndexAndOffset = (index: Int, offset: Value.Sum)
+    public func indexAndOffset(for w: Value.Sum) -> IndexAndOffset {
         precondition(w < weight)
         switch content {
         case .leaf(let a):
-            var c = Value.Weight.zero
+            var c = Value.Sum.zero
             for (i,v) in a.enumerated() {
-                let d = c + v.weight
+                let d = c + v.sum
                 if (c..<d).contains(w) {
                     let o = w - c
                     return (i,o)
@@ -178,7 +178,7 @@ Value: WBTLValueProtocol {
 
     public mutating func insert(_ v: Value, at i: Int) {
         count += 1
-        weight += v.weight
+        weight += v.sum
         switch content {
         case .leaf(var a):
             if a.count < leafNodeCapacity {
@@ -190,7 +190,7 @@ Value: WBTLValueProtocol {
                 let k = a.count / 2
                 let x = a[0..<k]
                 let y = a[k...]
-                content = .branch(WBTL(x), WBTL(y))
+                content = .branch(SBTL(x), SBTL(y))
             }
         case .branch(var a, var b):
             if i < a.count {
@@ -208,7 +208,7 @@ Value: WBTLValueProtocol {
     public mutating func remove(at i: Int) -> Value {
         let v = self[i]
         count -= 1
-        weight -= v.weight
+        weight -= v.sum
         switch content {
         case .leaf(var a):
             let v = a.remove(at: i)
@@ -234,7 +234,7 @@ Value: WBTLValueProtocol {
 
     ////
 
-    mutating func prependLeaf(_ leaf: WBTL) {
+    mutating func prependLeaf(_ leaf: SBTL) {
         switch content {
         case .leaf(_):
             let a = leaf
@@ -252,7 +252,7 @@ Value: WBTLValueProtocol {
             balance()
         }
     }
-    mutating func appendLeaf(_ leaf: WBTL) {
+    mutating func appendLeaf(_ leaf: SBTL) {
         switch content {
         case .leaf(_):
             let a = self
@@ -272,11 +272,11 @@ Value: WBTLValueProtocol {
     }
 
     @discardableResult
-    mutating func removeFirstLeaf() -> WBTL {
+    mutating func removeFirstLeaf() -> SBTL {
         switch content {
         case .leaf(_):
             let leaf = self
-            self = WBTL()
+            self = SBTL()
             return leaf
         case .branch(var a, let b):
             let leaf = a.removeFirstLeaf()
@@ -295,11 +295,11 @@ Value: WBTLValueProtocol {
         }
     }
     @discardableResult
-    mutating func removeLastLeaf() -> WBTL {
+    mutating func removeLastLeaf() -> SBTL {
         switch content {
         case .leaf(_):
             let leaf = self
-            self = WBTL()
+            self = SBTL()
             return leaf
         case .branch(let a, var b):
             let leaf = b.removeLastLeaf()
@@ -318,7 +318,7 @@ Value: WBTLValueProtocol {
         }
     }
 }
-public extension WBTL {
+public extension SBTL {
     mutating func replaceSubrange<C, R>(_ subrange: R, with newElements: C) where C : Collection, R : RangeExpression, Element == C.Element, Index == R.Bound {
         let q = subrange.relative(to: self)
         if q.count < newElements.count {
@@ -344,13 +344,13 @@ public extension WBTL {
         }
     }
 }
-extension WBTL: ExpressibleByArrayLiteral {
+extension SBTL: ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: Element...) {
         append(contentsOf: elements)
     }
 }
-extension WBTL: Equatable where Element: Equatable {
-    public static func == (_ a: WBTL, _ b: WBTL) -> Bool {
+extension SBTL: Equatable where Element: Equatable {
+    public static func == (_ a: SBTL, _ b: SBTL) -> Bool {
         guard a.count == b.count else { return false }
         for (x,y) in zip(a, b) {
             guard x == y else { return false }
@@ -359,9 +359,9 @@ extension WBTL: Equatable where Element: Equatable {
     }
 }
 
-enum WBTLContent<Value> where Value: WBTLValueProtocol {
+enum SBTLContent<Value> where Value: SBTLValueProtocol {
     case leaf([Value])
-    indirect case branch(WBTL<Value>, WBTL<Value>)
+    indirect case branch(SBTL<Value>, SBTL<Value>)
     var isLeaf: Bool {
         if case .leaf(_) = self { return true }
         return false
