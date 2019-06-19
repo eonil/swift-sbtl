@@ -14,7 +14,7 @@ extension Int: SBTLValueProtocol {
     }
 }
 
-let averageCount = 100
+let averageCount = 1_000
 let outerLoopCount = 1_00
 let innerLoopCount = 1_000
 
