@@ -24,7 +24,8 @@ Use `WBTL` type. This type provides these array-like interfaces.
 - `RandomAccessCollection`
 - `MutableCollection`
 - `RangeReplaceableCollection`
-- `ExpressibleByArrayLiteral`.
+- `ExpressibleByArrayLiteral`
+- `Equatable where Element: Equatable`
 
 Use `index(for:)` method to find an element for weight offset.
 
@@ -100,6 +101,12 @@ Overall performance is comparable with B-Tree by Károly Lőrentey.
 
 Get by index performance is slightly better than B-Tree by Károly Lőrentey.
 
+
+
+See Also
+-----------
+- [B-Tree by Károly Lőrentey](https://github.com/attaswift/BTree).
+- [HAMT by Eonil](https://github.com/eonil/swift-hamt).
 
 
 

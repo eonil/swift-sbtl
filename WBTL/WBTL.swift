@@ -349,6 +349,15 @@ extension WBTL: ExpressibleByArrayLiteral {
         append(contentsOf: elements)
     }
 }
+extension WBTL: Equatable where Element: Equatable {
+    public static func == (_ a: WBTL, _ b: WBTL) -> Bool {
+        guard a.count == b.count else { return false }
+        for (x,y) in zip(a, b) {
+            guard x == y else { return false }
+        }
+        return true
+    }
+}
 
 enum WBTLContent<Value> where Value: WBTLValueProtocol {
     case leaf([Value])
