@@ -7,6 +7,9 @@
 
 import Foundation
 import GameKit
+#if SWIFT_PACKAGE
+import SBTL
+#endif
 
 extension Int: SBTLValueProtocol {
     public var sum: Int {
@@ -14,7 +17,7 @@ extension Int: SBTLValueProtocol {
     }
 }
 
-let averageCount = 1_000
+let averageCount = 100
 let outerLoopCount = 1_00
 let innerLoopCount = 1_000
 

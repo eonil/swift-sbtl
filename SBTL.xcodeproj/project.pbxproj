@@ -73,6 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4548E2AE22BAA4DC0099E410 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		45A0884522B9E523000628D0 /* SBTLMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBTLMap.swift; sourceTree = "<group>"; };
 		45A0884722B9E529000628D0 /* SBTLSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBTLSet.swift; sourceTree = "<group>"; };
 		45A0884922B9FC03000628D0 /* BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
@@ -169,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				45B81CB422B79C0100306395 /* README.md */,
+				4548E2AE22BAA4DC0099E410 /* Package.swift */,
 				45B81C7C22B77CD200306395 /* SBTL */,
 				45B81C9E22B77D2500306395 /* SBTLUnitTests */,
 				45B81C8922B77CE600306395 /* SBTLBenchmark */,
