@@ -12,7 +12,7 @@ An implementation of Summation B-Tree based List for Swift.
 - Find by sum-offset also takes `O(log(n))` time.
 - Full Copy-on-Write support for copy-persistence.
 - Comparable performance with other B-Tree libraries.
-- Plain collection types without weighting operation.
+- Plain collection types without summation operation.
 - "MIT License"d.
 
 
