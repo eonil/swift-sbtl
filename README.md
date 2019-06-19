@@ -38,8 +38,8 @@ Summation?
 Internally, `SBTL` is implemented using B-Tree. 
 Most core operations takes `O(log(n))` time.
 
-"summing" means each nodes keeps `sum` value and adds
-them for each time elements get inserted and removed.
+"summation" means each nodes keeps summation of all nodes in the subtree
+for each time elements get inserted and removed.
 
 
 

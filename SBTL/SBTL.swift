@@ -40,7 +40,7 @@ RangeReplaceableCollection,
 BinarySearchProtocol where
 Value: SBTLValueProtocol {
     public private(set) var count = 0
-    public private(set) var weight = Value.Sum.zero
+    public private(set) var sum = Value.Sum.zero
 
     typealias Content = SBTLContent<Value>
     private(set) var content = Content.leaf([])
@@ -111,8 +111,8 @@ Value: SBTLValueProtocol {
         }
         set(v) {
             precondition(i < count, "Index is out of range.")
-            weight -= self[i].sum
-            weight += v.sum
+            sum -= self[i].sum
+            sum += v.sum
             switch content {
             case .leaf(var a):
                 a[i] = v
@@ -135,7 +135,7 @@ Value: SBTLValueProtocol {
     }
     public typealias IndexAndOffset = (index: Int, offset: Value.Sum)
     public func indexAndOffset(for w: Value.Sum) -> IndexAndOffset {
-        precondition(w < weight)
+        precondition(w < sum)
         switch content {
         case .leaf(let a):
             var c = Value.Sum.zero
@@ -149,9 +149,9 @@ Value: SBTLValueProtocol {
             }
             fatalError("A bug in implementation.")
         case .branch(let a, let b):
-            return w < a.weight
+            return w < a.sum
                 ? a.indexAndOffset(for: w)
-                : b.indexAndOffset(for: w - a.weight)
+                : b.indexAndOffset(for: w - a.sum)
         }
     }
 //    public func weightRange(at i: Int) -> Range<Value.Weight> {
@@ -178,7 +178,7 @@ Value: SBTLValueProtocol {
 
     public mutating func insert(_ v: Value, at i: Int) {
         count += 1
-        weight += v.sum
+        sum += v.sum
         switch content {
         case .leaf(var a):
             if a.count < leafNodeCapacity {
@@ -208,7 +208,7 @@ Value: SBTLValueProtocol {
     public mutating func remove(at i: Int) -> Value {
         let v = self[i]
         count -= 1
-        weight -= v.sum
+        sum -= v.sum
         switch content {
         case .leaf(var a):
             let v = a.remove(at: i)
@@ -240,14 +240,14 @@ Value: SBTLValueProtocol {
             let a = leaf
             let b = self
             count = a.count + b.count
-            weight = a.weight + b.weight
+            sum = a.sum + b.sum
             content = .branch(a, b)
             balance()
         case .branch(var a, let b):
             a.prependLeaf(leaf)
             a.balance()
             count = a.count + b.count
-            weight = a.weight + b.weight
+            sum = a.sum + b.sum
             content = .branch(a, b)
             balance()
         }
@@ -258,14 +258,14 @@ Value: SBTLValueProtocol {
             let a = self
             let b = leaf
             count = a.count + b.count
-            weight = a.weight + b.weight
+            sum = a.sum + b.sum
             content = .branch(a, b)
             balance()
         case .branch(let a, var b):
             b.appendLeaf(leaf)
             b.balance()
             count = a.count + b.count
-            weight = a.weight + b.weight
+            sum = a.sum + b.sum
             content = .branch(a, b)
             balance()
         }
@@ -287,7 +287,7 @@ Value: SBTLValueProtocol {
             }
             else {
                 count = a.count + b.count
-                weight = a.weight + b.weight
+                sum = a.sum + b.sum
                 content = .branch(a, b)
                 balance()
                 return leaf
@@ -310,7 +310,7 @@ Value: SBTLValueProtocol {
             }
             else {
                 count = a.count + b.count
-                weight = a.weight + b.weight
+                sum = a.sum + b.sum
                 content = .branch(a, b)
                 balance()
                 return leaf
