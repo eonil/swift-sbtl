@@ -28,4 +28,10 @@ struct ReproducibleRPNG {
         }
         return s
     }
+    mutating func nextWithRotation(in r: Range<Int>) -> Int {
+        let c = r.count
+        guard c > 0 else { return 0 }
+        let n = nextWithRotation() % c
+        return r.lowerBound + n
+    }
 }

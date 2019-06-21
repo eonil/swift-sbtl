@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "45B81C8722B77CE600306395"
-               BuildableName = "SBTLBenchmark"
-               BlueprintName = "SBTLBenchmark"
+               BlueprintIdentifier = "450B3F7722BD03710091D6BB"
+               BuildableName = "SBTLMapBenchmark"
+               BlueprintName = "SBTLMapBenchmark"
                ReferencedContainer = "container:SBTL.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,9 +30,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "45B81C8722B77CE600306395"
-            BuildableName = "SBTLBenchmark"
-            BlueprintName = "SBTLBenchmark"
+            BlueprintIdentifier = "450B3F7722BD03710091D6BB"
+            BuildableName = "SBTLMapBenchmark"
+            BlueprintName = "SBTLMapBenchmark"
             ReferencedContainer = "container:SBTL.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -54,9 +54,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "45B81C8722B77CE600306395"
-            BuildableName = "SBTLBenchmark"
-            BlueprintName = "SBTLBenchmark"
+            BlueprintIdentifier = "450B3F7722BD03710091D6BB"
+            BuildableName = "SBTLMapBenchmark"
+            BlueprintName = "SBTLMapBenchmark"
             ReferencedContainer = "container:SBTL.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,9 +71,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "45B81C8722B77CE600306395"
-            BuildableName = "SBTLBenchmark"
-            BlueprintName = "SBTLBenchmark"
+            BlueprintIdentifier = "450B3F7722BD03710091D6BB"
+            BuildableName = "SBTLMapBenchmark"
+            BlueprintName = "SBTLMapBenchmark"
             ReferencedContainer = "container:SBTL.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

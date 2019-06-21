@@ -16,45 +16,45 @@ class SBTLUnitTests: XCTestCase {
 
         a.append(111)
         XCTAssertEqual(a.count, 1)
-        XCTAssertEqual(a.weight, 111)
+        XCTAssertEqual(a.sum, 111)
         XCTAssertEqual(Array(a), [111])
 
         a.removeLast()
         XCTAssertEqual(a.count, 0)
-        XCTAssertEqual(a.weight, 0)
+        XCTAssertEqual(a.sum, 0)
         XCTAssertEqual(Array(a), [])
     }
     func test100() {
         typealias L = SBTL<Int>
         var a = L()
         XCTAssertEqual(a.count, 0)
-        XCTAssertEqual(a.weight, 0)
+        XCTAssertEqual(a.sum, 0)
 
         for i in 0..<100 {
             a.append(i)
         }
         XCTAssertEqual(a.count, 100)
-        XCTAssertEqual(a.weight, (0..<100).reduce(0, +))
+        XCTAssertEqual(a.sum, (0..<100).reduce(0, +))
         XCTAssertEqual(Array(a), Array(0..<100))
 
         for _ in 0..<100 {
             a.removeLast()
         }
         XCTAssertEqual(a.count, 0)
-        XCTAssertEqual(a.weight, 0)
+        XCTAssertEqual(a.sum, 0)
         XCTAssertEqual(Array(a), [])
     }
     func testCase1() {
         typealias L = SBTL<Int>
         var a = L()
         XCTAssertEqual(a.count, 0)
-        XCTAssertEqual(a.weight, 0)
+        XCTAssertEqual(a.sum, 0)
         let n = 2048
         for i in 0..<n {
             a.append(i)
         }
         XCTAssertEqual(Array(a), Array(0..<n))
-        XCTAssertEqual(a.weight, (0..<n).reduce(0, +))
+        XCTAssertEqual(a.sum, (0..<n).reduce(0, +))
 
         do {
             a.insert(999, at: a.count)
@@ -107,12 +107,12 @@ class SBTLUnitTests: XCTestCase {
             if i % 1000 == 0 {
                 print(i)
                 XCTAssertEqual(a.count, i+1)
-                XCTAssertEqual(a.weight, (0...i).reduce(0, +))
+                XCTAssertEqual(a.sum, (0...i).reduce(0, +))
                 XCTAssertEqual(Array(a), Array(0...i))
             }
         }
         XCTAssertEqual(a.count, n)
-        XCTAssertEqual(a.weight, (0..<n).reduce(0, +))
+        XCTAssertEqual(a.sum, (0..<n).reduce(0, +))
         XCTAssertEqual(Array(a), Array(0..<n))
 
         for i in 0..<n {
@@ -122,7 +122,7 @@ class SBTLUnitTests: XCTestCase {
             }
         }
         XCTAssertEqual(a.count, 0)
-        XCTAssertEqual(a.weight, 0)
+        XCTAssertEqual(a.sum, 0)
         XCTAssertEqual(Array(a), [])
     }
 }

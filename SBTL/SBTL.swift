@@ -49,7 +49,7 @@ Element: SBTLValueProtocol {
     var leafNodeCapacity: Int {
         // Accorgind to Károly Lőrentey, most efficient size would be
         // 16 KiB. But for the case of persistent datastructure, it is likely
-        // to waste too much memory. Therefore I use 4 KiB for cache size.
+        // to waste too much memory. Therefore I use 4 KiB for bucket size.
         //
         // You can control time/space efficiency by setting this number.
         // Larger number up to about 16 KiB increases cache locality

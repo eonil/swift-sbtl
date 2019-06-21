@@ -8,6 +8,13 @@
 protocol BinarySearchProtocol where
 Self: RandomAccessCollection,
 Index == Int {
+    func index<C>(
+        of x: C,
+        in r: Range<Int>,
+        with k: (Self.Element) -> C)
+        -> Int
+        where
+        C: Comparable
     /// Binary search.
     ///
     /// This assumes `self` is sorted.
@@ -27,8 +34,8 @@ Index == Int {
     /// - Parameter with k:
     ///     A function that converts an element into key.
     ///
-    func findInsertionPoint<C>(
-        for x: C,
+    func indexToPlace<C>(
+        _ x: C,
         in r: Range<Int>,
         with k: (Self.Element) -> C)
         -> Int
@@ -36,8 +43,28 @@ Index == Int {
         C: Comparable
 }
 extension BinarySearchProtocol {
-    func findInsertionPoint<C>(
-        for x: C,
+    func index<C>(
+        of x: C,
+        in r: Range<Int>,
+        with k: (Self.Element) -> C)
+        -> Int
+    where
+        C: Comparable
+    {
+        switch r.count {
+        case 0:
+            return r.lowerBound
+        case 1:
+            return r.lowerBound
+        default:
+            let i = r.lowerBound + (r.count / 2)
+            let y = k(self[i])
+            let s = x < y ? r[..<i] : r[i...]
+            return index(of: x, in: s, with: k)
+        }
+    }
+    func indexToPlace<C>(
+        _ x: C,
         in r: Range<Int>,
         with k: (Element) -> C)
         -> Int
@@ -48,12 +75,13 @@ extension BinarySearchProtocol {
         case 0:
             return r.lowerBound
         case 1:
-            return r.upperBound
+            let y = k(self[r.lowerBound])
+            return x <= y ? r.lowerBound : r.upperBound
         default:
             let i = r.lowerBound + (r.count / 2)
             let y = k(self[i])
             let s = x < y ? r[..<i] : r[i...]
-            return findInsertionPoint(for: x, in: s, with: k)
+            return indexToPlace(x, in: s, with: k)
         }
     }
 }

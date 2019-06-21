@@ -35,7 +35,7 @@ Element: Comparable & SBTLValueProtocol {
     /// Binary search.
     /// - Complexity: O(log2(n))
     public func firstIndex(of e: Element) -> Int? {
-        let i = impl.findInsertionPoint(for: e, in: impl.indices, with: {$0})
+        let i = impl.index(of: e, in: impl.indices, with: {$0})
         let x = impl[i]
         return x == e ? i : nil
     }
@@ -52,7 +52,7 @@ Element: Comparable & SBTLValueProtocol {
     }
 
     public mutating func insert(_ e: Element) {
-        let i = impl.findInsertionPoint(for: e, in: impl.indices, with: {$0})
+        let i = impl.indexToPlace(e, in: impl.indices, with: {$0})
         impl.insert(e, at: i)
     }
     @discardableResult
