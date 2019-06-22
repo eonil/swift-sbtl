@@ -44,6 +44,8 @@ Element: SBTLValueProtocol {
 
     typealias Content = SBTLContent<Element>
     private(set) var content = Content.leaf([])
+    private(set) var first: Element?
+    private(set) var last: Element?
 
     public init() {}
     public init<S>(_ s: S) where S: Sequence, S.Element == Element {
@@ -66,7 +68,7 @@ extension SBTL {
         // and decreases sharing amount.
         // Smaller numbers do the opposite.
         //
-        let cacheSize = 4*1024
+        let cacheSize = 16*1024
         let maxCap = cacheSize / MemoryLayout<Element>.stride
         return Swift.max(1,maxCap)
     }
@@ -138,7 +140,7 @@ Element: SBTLValueProtocol {
 extension SBTLBinarySearch {
     typealias IndexAndElement = (index: Int, element: Element)
     func indexAndElement<C>(of x: C, with m: (Element) -> C) -> IndexAndElement? where C: Comparable {
-        return base.count == 0 ? nil : base.content.indexAndElement(of: x, with: m)
+        return base.count == 0 ? nil : base.content.indexAndElementOptimized(of: x, with: m)
     }
     func indexToPlace<C>(_ x: C, with m: (Element) -> C) -> Int where C: Comparable {
         return base.count == 0 ? 0 : base.content.indexToPlace(x, with: m)
@@ -146,9 +148,9 @@ extension SBTLBinarySearch {
 }
 
 // MARK: Node Content
-enum SBTLContent<Value> where Value: SBTLValueProtocol {
+indirect enum SBTLContent<Value> where Value: SBTLValueProtocol {
     case leaf([Value])
-    indirect case branch(SBTL<Value>, SBTL<Value>)
+    case branch(SBTL<Value>, SBTL<Value>)
     var isLeaf: Bool {
         if case .leaf(_) = self { return true }
         return false
@@ -164,10 +166,26 @@ extension SBTLContent: BinarySearchProtocol {}
 extension SBTLContent: TreeBinarySearchProtocol {}
 extension SBTLContent {
     typealias IndexAndElement = (index: Int, element: Value)
-    /// Find index and element with associated key `x` using Binary Search.
-    /// This function assumes `self` is sorted.
-    /// - Parameter with m:
-    ///     A functions returning comparable key.
+    /// Alternative solution if caller can guarantee no emprty subnode.
+    func indexAndElementOptimized<C>(of x: C, with m: (Value) -> C) -> IndexAndElement? where C: Comparable {
+        switch self {
+        case .leaf(let a):
+            assert(a.count > 0, "Caller MUST guarantee non-zero count.")
+            return a.binarySearch.indexAndElement(of: x, with: m)
+        case .branch(let a, let b):
+            assert(a.count > 0, "Caller MUST guarantee non-zero count.")
+            assert(b.count > 0, "Caller MUST guarantee non-zero count.")
+            let y = m(b.first!)
+            if x < y {
+                return a.binarySearch.indexAndElement(of :x, with: m)
+            }
+            else {
+                guard let (i,e) = b.binarySearch.indexAndElement(of: x, with: m) else { return nil }
+                return (a.count + i,e)
+            }
+        }
+    }
+//    @available(*,unavailable: 0, message: "DO NOT use this variant unless absolutely required.")
     func indexAndElement<C>(of x: C, with m: (Value) -> C) -> IndexAndElement? where C: Comparable {
         switch self {
         case .leaf(let a):
@@ -226,6 +244,8 @@ extension SBTL {
                 let leaf = a.removeLastLeaf()
                 b.prependLeaf(leaf)
                 content = .branch(a,b)
+                first = a.first ?? b.first
+                last = b.last ?? a.last
                 return
             }
             if leafNodeCapacity < -dt {
@@ -233,6 +253,8 @@ extension SBTL {
                 let leaf = b.removeFirstLeaf()
                 a.appendLeaf(leaf)
                 content = .branch(a,b)
+                first = a.first ?? b.first
+                last = b.last ?? a.last
                 return
             }
             // Do not write back if not necessary.
@@ -250,6 +272,8 @@ extension SBTL {
             count = a.count + b.count
             sum = a.sum + b.sum
             content = .branch(a, b)
+            first = a.first ?? b.first
+            last = b.last ?? a.last
             balance()
         case .branch(var a, let b):
             a.prependLeaf(leaf)
@@ -257,6 +281,8 @@ extension SBTL {
             count = a.count + b.count
             sum = a.sum + b.sum
             content = .branch(a, b)
+            first = a.first ?? b.first
+            last = b.last ?? a.last
             balance()
         }
     }
@@ -268,6 +294,8 @@ extension SBTL {
             count = a.count + b.count
             sum = a.sum + b.sum
             content = .branch(a, b)
+            first = a.first ?? b.first
+            last = b.last ?? a.last
             balance()
         case .branch(let a, var b):
             b.appendLeaf(leaf)
@@ -275,6 +303,8 @@ extension SBTL {
             count = a.count + b.count
             sum = a.sum + b.sum
             content = .branch(a, b)
+            first = a.first ?? b.first
+            last = b.last ?? a.last
             balance()
         }
     }
@@ -297,6 +327,8 @@ extension SBTL {
                 count = a.count + b.count
                 sum = a.sum + b.sum
                 content = .branch(a, b)
+                first = a.first ?? b.first
+                last = b.last ?? a.last
                 balance()
                 return leaf
             }
@@ -320,6 +352,8 @@ extension SBTL {
                 count = a.count + b.count
                 sum = a.sum + b.sum
                 content = .branch(a, b)
+                first = a.first ?? b.first
+                last = b.last ?? a.last
                 balance()
                 return leaf
             }
@@ -352,6 +386,8 @@ public extension SBTL {
             case .leaf(var a):
                 a[i] = v
                 content = .leaf(a)
+                first = a.first
+                last = a.last
             case .branch(var a, var b):
                 if i < a.count {
                     a[i] = v
@@ -360,6 +396,8 @@ public extension SBTL {
                     b[i-a.count] = v
                 }
                 content = .branch(a, b)
+                first = a.first ?? b.first
+                last = b.last ?? a.last
             }
         }
     }
@@ -372,6 +410,8 @@ public extension SBTL {
             if a.count < leafNodeCapacity {
                 a.insert(v, at: i)
                 content = .leaf(a)
+                first = a.first
+                last = a.last
             }
             else {
                 a.insert(v, at: i)
@@ -379,6 +419,8 @@ public extension SBTL {
                 let x = a[0..<k]
                 let y = a[k...]
                 content = .branch(SBTL(x), SBTL(y))
+                first = x.first ?? y.first
+                last = y.last ?? x.last
             }
         case .branch(var a, var b):
             if i < a.count {
@@ -389,6 +431,8 @@ public extension SBTL {
                 b.insert(v, at: j)
             }
             content = .branch(a, b)
+            first = a.first ?? b.first
+            last = b.last ?? a.last
             balance()
         }
     }
@@ -401,6 +445,8 @@ public extension SBTL {
         case .leaf(var a):
             let v = a.remove(at: i)
             content = .leaf(a)
+            first = a.first
+            last = a.last
             return v
         case .branch(var a, var b):
             let v = i < a.count ? a.remove(at: i) : b.remove(at: i - a.count)
@@ -411,9 +457,13 @@ public extension SBTL {
                 c.append(contentsOf: a)
                 c.append(contentsOf: b)
                 content = .leaf(c)
+                first = c.first
+                last = c.last
             }
             else {
                 content = .branch(a, b)
+                first = a.first ?? b.first
+                last = b.last ?? a.last
                 balance()
             }
             return v

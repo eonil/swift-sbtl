@@ -11,7 +11,8 @@ import Foundation
 ///
 /// - TODO:
 ///     Lookup performance is very bad now.
-///     Not really ready for production.
+///     About 2x-3x slower than `BTree` (Lőrentey).
+///     Don't use unless you need summation feature.
 ///
 public struct SBTLMap<Key,Value>:
 RandomAccessCollection,
