@@ -45,9 +45,19 @@ Element: SBTLValueProtocol {
     typealias Content = SBTLContent<Element>
     private(set) var content = Content.leaf([])
 
-    @inline(__always)
+    public init() {}
+    public init<S>(_ s: S) where S: Sequence, S.Element == Element {
+        append(contentsOf: s)
+    }
+    public init(arrayLiteral elements: Element...) {
+        append(contentsOf: elements)
+    }
+}
+
+// MARK: Configuration
+extension SBTL {
     var leafNodeCapacity: Int {
-        // Accorgind to Károly Lőrentey, most efficient size would be
+        // According to Károly Lőrentey, most efficient size would be
         // 16 KiB. But for the case of persistent datastructure, it is likely
         // to waste too much memory. Therefore I use 4 KiB for bucket size.
         //
@@ -60,6 +70,151 @@ Element: SBTLValueProtocol {
         let maxCap = cacheSize / MemoryLayout<Element>.stride
         return Swift.max(1,maxCap)
     }
+}
+
+// MARK: Summation Query
+public extension SBTL {
+    /// Finds index of value that contains specified sum offset.
+    func index(for w: Element.Sum) -> Int {
+        return indexAndOffset(for: w).index
+    }
+    typealias IndexAndOffset = (index: Int, offset: Element.Sum)
+    func indexAndOffset(for w: Element.Sum) -> IndexAndOffset {
+        precondition(w < sum)
+        switch content {
+        case .leaf(let a):
+            var c = Element.Sum.zero
+            for (i,v) in a.enumerated() {
+                let d = c + v.sum
+                if (c..<d).contains(w) {
+                    let o = w - c
+                    return (i,o)
+                }
+                c = d
+            }
+            fatalError("A bug in implementation.")
+        case .branch(let a, let b):
+            return w < a.sum
+                ? a.indexAndOffset(for: w)
+                : b.indexAndOffset(for: w - a.sum)
+        }
+    }
+    //    public func weightRange(at i: Int) -> Range<Value.Weight> {
+    //        switch content {
+    //        case .leaf(let a):
+    //            let start = a[..<i].lazy.map({ v in v.weight }).reduce(.zero, +)
+    //            let end = start + a[i].weight
+    //            return start..<end
+    //        case .branch(let a, let b):
+    //            return i < a.count
+    //                ? a.weightRange(at: i)
+    //                : b.weightRange(at: i - a.count)
+    //        }
+    //    }
+    //    public func weightRange<R>(in r: R) -> Range<Value.Weight> where
+    //        R: RangeExpression,
+    //        R.Bound == Int
+    //    {
+    //        let s = r.relative(to: self)
+    //        let a = weightRange(at: s.lowerBound)
+    //        let b = weightRange(at: s.upperBound)
+    //        return a.lowerBound..<b.upperBound
+    //    }
+}
+
+// MARK: Binary Search
+extension SBTL {
+    var binarySearch: SBTLBinarySearch<Element> {
+        return SBTLBinarySearch(base: self)
+    }
+}
+struct SBTLBinarySearch<Element>:
+BinarySearchProtocol,
+TreeBinarySearchProtocol where
+Element: SBTLValueProtocol {
+    typealias Base = SBTL<Element>
+    var base: Base
+}
+extension SBTLBinarySearch {
+    typealias IndexAndElement = (index: Int, element: Element)
+    func indexAndElement<C>(of x: C, with m: (Element) -> C) -> IndexAndElement? where C: Comparable {
+        return base.count == 0 ? nil : base.content.indexAndElement(of: x, with: m)
+    }
+    func indexToPlace<C>(_ x: C, with m: (Element) -> C) -> Int where C: Comparable {
+        return base.count == 0 ? 0 : base.content.indexToPlace(x, with: m)
+    }
+}
+
+// MARK: Node Content
+enum SBTLContent<Value> where Value: SBTLValueProtocol {
+    case leaf([Value])
+    indirect case branch(SBTL<Value>, SBTL<Value>)
+    var isLeaf: Bool {
+        if case .leaf(_) = self { return true }
+        return false
+    }
+    var isBranch: Bool {
+        if case .branch(_) = self { return true }
+        return false
+    }
+}
+
+// MARK: Node Binary Search
+extension SBTLContent: BinarySearchProtocol {}
+extension SBTLContent: TreeBinarySearchProtocol {}
+extension SBTLContent {
+    typealias IndexAndElement = (index: Int, element: Value)
+    /// Find index and element with associated key `x` using Binary Search.
+    /// This function assumes `self` is sorted.
+    /// - Parameter with m:
+    ///     A functions returning comparable key.
+    func indexAndElement<C>(of x: C, with m: (Value) -> C) -> IndexAndElement? where C: Comparable {
+        switch self {
+        case .leaf(let a):
+            return a.binarySearch.indexAndElement(of: x, with: m)
+        case .branch(let a, let b):
+            switch (a.count, b.count) {
+            case (0,0): return nil
+            case (_,0): return a.binarySearch.indexAndElement(of: x, with: m)
+            case (0,_):
+                guard let (i,e) = b.binarySearch.indexAndElement(of: x, with: m) else { return nil }
+                return (a.count + i,e)
+            default:
+                let y = m(b.first!)
+                if x < y {
+                    return a.binarySearch.indexAndElement(of :x, with: m)
+                }
+                else {
+                    guard let (i,e) = b.binarySearch.indexAndElement(of: x, with: m) else { return nil }
+                    return (a.count + i,e)
+                }
+            }
+        }
+    }
+    func indexToPlace<C>(_ x: C, with m: (Value) -> C) -> Int where C: Comparable {
+        switch self {
+        case .leaf(let a):
+            return a.binarySearch.indexToPlace(x, with: m)
+        case .branch(let a, let b):
+            switch (a.count, b.count) {
+            case (0,0): return 0
+            case (_,0): return a.binarySearch.indexToPlace(x, with: m)
+            case (0,_): return a.count + b.binarySearch.indexToPlace(x, with: m)
+            default:
+                let y = m(b.first!)
+                if x < y {
+                    return a.binarySearch.indexToPlace(x, with: m)
+                }
+                else {
+                    return a.count + b.binarySearch.indexToPlace(x, with: m)
+                }
+            }
+        }
+    }
+}
+
+// MARK: Node Balancing
+extension SBTL {
     mutating func balance() {
         switch content {
         case .leaf(_):  break
@@ -83,160 +238,10 @@ Element: SBTLValueProtocol {
             // Do not write back if not necessary.
         }
     }
+}
 
-    ////
-
-    public init() {}
-    public init<S>(_ s: S) where S: Sequence, S.Element == Element {
-        append(contentsOf: s)
-    }
-    public init(arrayLiteral elements: Element...) {
-        append(contentsOf: elements)
-    }
-
-    public var startIndex: Int {
-        return 0
-    }
-    public var endIndex: Int {
-        return count
-    }
-    public func index(after i: Int) -> Int {
-        return i + 1
-    }
-
-    public subscript(_ i: Int) -> Element {
-        get {
-            precondition(i < count, "Index is out of range.")
-            switch content {
-            case .leaf(let a):          return a[i]
-            case .branch(let a, let b): return i < a.count ? a[i] : b[i-a.count]
-            }
-        }
-        set(v) {
-            precondition(i < count, "Index is out of range.")
-            sum -= self[i].sum
-            sum += v.sum
-            switch content {
-            case .leaf(var a):
-                a[i] = v
-                content = .leaf(a)
-            case .branch(var a, var b):
-                if i < a.count {
-                    a[i] = v
-                }
-                else {
-                    b[i-a.count] = v
-                }
-                content = .branch(a, b)
-            }
-        }
-    }
-
-    /// Finds index of value that contains specified sum offset.
-    public func index(for w: Element.Sum) -> Int {
-        return indexAndOffset(for: w).index
-    }
-    public typealias IndexAndOffset = (index: Int, offset: Element.Sum)
-    public func indexAndOffset(for w: Element.Sum) -> IndexAndOffset {
-        precondition(w < sum)
-        switch content {
-        case .leaf(let a):
-            var c = Element.Sum.zero
-            for (i,v) in a.enumerated() {
-                let d = c + v.sum
-                if (c..<d).contains(w) {
-                    let o = w - c
-                    return (i,o)
-                }
-                c = d
-            }
-            fatalError("A bug in implementation.")
-        case .branch(let a, let b):
-            return w < a.sum
-                ? a.indexAndOffset(for: w)
-                : b.indexAndOffset(for: w - a.sum)
-        }
-    }
-//    public func weightRange(at i: Int) -> Range<Value.Weight> {
-//        switch content {
-//        case .leaf(let a):
-//            let start = a[..<i].lazy.map({ v in v.weight }).reduce(.zero, +)
-//            let end = start + a[i].weight
-//            return start..<end
-//        case .branch(let a, let b):
-//            return i < a.count
-//                ? a.weightRange(at: i)
-//                : b.weightRange(at: i - a.count)
-//        }
-//    }
-//    public func weightRange<R>(in r: R) -> Range<Value.Weight> where
-//        R: RangeExpression,
-//        R.Bound == Int
-//    {
-//        let s = r.relative(to: self)
-//        let a = weightRange(at: s.lowerBound)
-//        let b = weightRange(at: s.upperBound)
-//        return a.lowerBound..<b.upperBound
-//    }
-
-    public mutating func insert(_ v: Element, at i: Int) {
-        count += 1
-        sum += v.sum
-        switch content {
-        case .leaf(var a):
-            if a.count < leafNodeCapacity {
-                a.insert(v, at: i)
-                content = .leaf(a)
-            }
-            else {
-                a.insert(v, at: i)
-                let k = a.count / 2
-                let x = a[0..<k]
-                let y = a[k...]
-                content = .branch(SBTL(x), SBTL(y))
-            }
-        case .branch(var a, var b):
-            if i < a.count {
-                a.insert(v, at: i)
-            }
-            else {
-                let j = i - a.count
-                b.insert(v, at: j)
-            }
-            content = .branch(a, b)
-            balance()
-        }
-    }
-    @discardableResult
-    public mutating func remove(at i: Int) -> Element {
-        let v = self[i]
-        count -= 1
-        sum -= v.sum
-        switch content {
-        case .leaf(var a):
-            let v = a.remove(at: i)
-            content = .leaf(a)
-            return v
-        case .branch(var a, var b):
-            let v = i < a.count ? a.remove(at: i) : b.remove(at: i - a.count)
-            if a.count + b.count < leafNodeCapacity / 2 {
-                // Merge.
-                var c = [Element]()
-                c.reserveCapacity(a.count + b.count)
-                c.append(contentsOf: a)
-                c.append(contentsOf: b)
-                content = .leaf(c)
-            }
-            else {
-                content = .branch(a, b)
-                balance()
-            }
-            return v
-        }
-    }
-
-    ////
-
+// MARK: Node Roatation
+extension SBTL {
     mutating func prependLeaf(_ leaf: SBTL) {
         switch content {
         case .leaf(_):
@@ -321,6 +326,102 @@ Element: SBTLValueProtocol {
         }
     }
 }
+
+// MARK: Collection
+public extension SBTL {
+    var startIndex: Int {
+        return 0
+    }
+    var endIndex: Int {
+        return count
+    }
+
+    subscript(_ i: Int) -> Element {
+        get {
+            precondition(i < count, "Index is out of range.")
+            switch content {
+            case .leaf(let a):          return a[i]
+            case .branch(let a, let b): return i < a.count ? a[i] : b[i-a.count]
+            }
+        }
+        set(v) {
+            precondition(i < count, "Index is out of range.")
+            sum -= self[i].sum
+            sum += v.sum
+            switch content {
+            case .leaf(var a):
+                a[i] = v
+                content = .leaf(a)
+            case .branch(var a, var b):
+                if i < a.count {
+                    a[i] = v
+                }
+                else {
+                    b[i-a.count] = v
+                }
+                content = .branch(a, b)
+            }
+        }
+    }
+
+    mutating func insert(_ v: Element, at i: Int) {
+        count += 1
+        sum += v.sum
+        switch content {
+        case .leaf(var a):
+            if a.count < leafNodeCapacity {
+                a.insert(v, at: i)
+                content = .leaf(a)
+            }
+            else {
+                a.insert(v, at: i)
+                let k = a.count / 2
+                let x = a[0..<k]
+                let y = a[k...]
+                content = .branch(SBTL(x), SBTL(y))
+            }
+        case .branch(var a, var b):
+            if i < a.count {
+                a.insert(v, at: i)
+            }
+            else {
+                let j = i - a.count
+                b.insert(v, at: j)
+            }
+            content = .branch(a, b)
+            balance()
+        }
+    }
+    @discardableResult
+    mutating func remove(at i: Int) -> Element {
+        let v = self[i]
+        count -= 1
+        sum -= v.sum
+        switch content {
+        case .leaf(var a):
+            let v = a.remove(at: i)
+            content = .leaf(a)
+            return v
+        case .branch(var a, var b):
+            let v = i < a.count ? a.remove(at: i) : b.remove(at: i - a.count)
+            if a.count + b.count < leafNodeCapacity / 2 {
+                // Merge.
+                var c = [Element]()
+                c.reserveCapacity(a.count + b.count)
+                c.append(contentsOf: a)
+                c.append(contentsOf: b)
+                content = .leaf(c)
+            }
+            else {
+                content = .branch(a, b)
+                balance()
+            }
+            return v
+        }
+    }
+}
+
+// MARK: RangeReplaceableCollection
 public extension SBTL {
     mutating func replaceSubrange<C, R>(_ subrange: R, with newElements: C) where C : Collection, R : RangeExpression, Element == C.Element, Index == R.Bound {
         let q = subrange.relative(to: self)
@@ -356,96 +457,5 @@ extension SBTL: Equatable where Element: Equatable {
             guard x == y else { return false }
         }
         return true
-    }
-}
-
-// MARK: Node Content
-enum SBTLContent<Value> where Value: SBTLValueProtocol {
-    case leaf([Value])
-    indirect case branch(SBTL<Value>, SBTL<Value>)
-    var isLeaf: Bool {
-        if case .leaf(_) = self { return true }
-        return false
-    }
-    var isBranch: Bool {
-        if case .branch(_) = self { return true }
-        return false
-    }
-}
-
-// MARK: Node Binary Search
-extension SBTLContent: BinarySearchProtocol {}
-extension SBTLContent: TreeBinarySearchProtocol {}
-extension SBTLContent {
-    typealias IndexAndElement = (index: Int, element: Value)
-    /// Find index and element with associated key `x` using Binary Search.
-    /// This function assumes `self` is sorted.
-    /// - Parameter with m:
-    ///     A functions returning comparable key.
-    func indexAndElement<C>(of x: C, with m: (Value) -> C) -> IndexAndElement? where C: Comparable {
-        switch self {
-        case .leaf(let a):
-            return a.binarySearch.indexAndElement(of: x, with: m)
-        case .branch(let a, let b):
-            switch (a.count, b.count) {
-            case (0,0): return nil
-            case (_,0): return a.binarySearch.indexAndElement(of: x, with: m)
-            case (0,_):
-                guard let (i,e) = b.binarySearch.indexAndElement(of: x, with: m) else { return nil }
-                return (a.count + i,e)
-            default:
-                let y = m(b.first!)
-                if x < y {
-                    return a.binarySearch.indexAndElement(of :x, with: m)
-                }
-                else {
-                    guard let (i,e) = b.binarySearch.indexAndElement(of: x, with: m) else { return nil }
-                    return (a.count + i,e)
-                }
-            }
-        }
-    }
-    func indexToPlace<C>(_ x: C, with m: (Value) -> C) -> Int where C: Comparable {
-        switch self {
-        case .leaf(let a):
-            return a.binarySearch.indexToPlace(x, with: m)
-        case .branch(let a, let b):
-            switch (a.count, b.count) {
-            case (0,0): return 0
-            case (_,0): return a.binarySearch.indexToPlace(x, with: m)
-            case (0,_): return a.count + b.binarySearch.indexToPlace(x, with: m)
-            default:
-                let y = m(b.first!)
-                if x < y {
-                    return a.binarySearch.indexToPlace(x, with: m)
-                }
-                else {
-                    return a.count + b.binarySearch.indexToPlace(x, with: m)
-                }
-            }
-        }
-    }
-}
-
-// MARK: Binary Search (SBTL)
-extension SBTL {
-    var binarySearch: SBTLBinarySearch<Element> {
-        return SBTLBinarySearch(base: self)
-    }
-}
-struct SBTLBinarySearch<Element>:
-BinarySearchProtocol,
-TreeBinarySearchProtocol where
-Element: SBTLValueProtocol {
-    typealias Base = SBTL<Element>
-    var base: Base
-}
-extension SBTLBinarySearch {
-    typealias IndexAndElement = (index: Int, element: Element)
-    func indexAndElement<C>(of x: C, with m: (Element) -> C) -> IndexAndElement? where C: Comparable {
-        return base.count == 0 ? nil : base.content.indexAndElement(of: x, with: m)
-    }
-    func indexToPlace<C>(_ x: C, with m: (Element) -> C) -> Int where C: Comparable {
-        return base.count == 0 ? 0 : base.content.indexToPlace(x, with: m)
     }
 }
