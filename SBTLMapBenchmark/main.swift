@@ -165,19 +165,20 @@ func runCRUDPackage<T>(_: T.Type, _ ns: CRUDNames) where T: AAPerfMeasuringProto
     }
 }
 
-runCRUDPackage(Dictionary<Int,Int>.self, CRUDNames(
-    get: .stdGet,
-    insert: .stdInsert,
-    update: .stdUpdate,
-    remove: .stdRemove))
-runCRUDPackage(Map<Int,Int>.self, CRUDNames(
-    get: .btreeGet,
-    insert: .btreeInsert,
-    update: .btreeUpdate,
-    remove: .btreeRemove))
 runCRUDPackage(SBTLMap<Int,Int>.self, CRUDNames(
     get: .sbtlGet,
     insert: .sbtlInsert,
     update: .sbtlUpdate,
     remove: .sbtlRemove))
+runCRUDPackage(Map<Int,Int>.self, CRUDNames(
+    get: .btreeGet,
+    insert: .btreeInsert,
+    update: .btreeUpdate,
+    remove: .btreeRemove))
+runCRUDPackage(Dictionary<Int,Int>.self, CRUDNames(
+    get: .stdGet,
+    insert: .stdInsert,
+    update: .stdUpdate,
+    remove: .stdRemove))
+
 db.print()

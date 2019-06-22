@@ -23,22 +23,21 @@ public protocol SBTLValueProtocol {
 /// - Provide Copy-on-Write automatically.
 /// - Balancing is done for shorter depth, and for sum distribution.
 ///
-///
-///
 /// Summation Attributes
 /// --------------------
 /// - Sum is just a property of value.
 /// - `SBTL` provides automatic summation of all values in subtree.
 /// - Summation is delta accumulation based.
 ///   (not good for floating-point types)
+/// - Summation can overflow, and there's no facility to handle overflow.
+///   You're responsible to prevent overflows.
 /// - You can find element index by sum offset.
 ///
 public struct SBTL<Element>:
 RandomAccessCollection,
 MutableCollection,
 RangeReplaceableCollection,
-ExpressibleByArrayLiteral,
-BinarySearchProtocol where
+ExpressibleByArrayLiteral where
 Element: SBTLValueProtocol {
     public private(set) var count = 0
     public private(set) var sum = Element.Sum.zero
@@ -46,6 +45,7 @@ Element: SBTLValueProtocol {
     typealias Content = SBTLContent<Element>
     private(set) var content = Content.leaf([])
 
+    @inline(__always)
     var leafNodeCapacity: Int {
         // Accorgind to Károly Lőrentey, most efficient size would be
         // 16 KiB. But for the case of persistent datastructure, it is likely
@@ -103,6 +103,7 @@ Element: SBTLValueProtocol {
     public func index(after i: Int) -> Int {
         return i + 1
     }
+
     public subscript(_ i: Int) -> Element {
         get {
             precondition(i < count, "Index is out of range.")
@@ -346,6 +347,8 @@ public extension SBTL {
         }
     }
 }
+
+// MARK: Equality Check.
 extension SBTL: Equatable where Element: Equatable {
     public static func == (_ a: SBTL, _ b: SBTL) -> Bool {
         guard a.count == b.count else { return false }
@@ -356,6 +359,7 @@ extension SBTL: Equatable where Element: Equatable {
     }
 }
 
+// MARK: Node Content
 enum SBTLContent<Value> where Value: SBTLValueProtocol {
     case leaf([Value])
     indirect case branch(SBTL<Value>, SBTL<Value>)
@@ -369,3 +373,79 @@ enum SBTLContent<Value> where Value: SBTLValueProtocol {
     }
 }
 
+// MARK: Node Binary Search
+extension SBTLContent: BinarySearchProtocol {}
+extension SBTLContent: TreeBinarySearchProtocol {}
+extension SBTLContent {
+    typealias IndexAndElement = (index: Int, element: Value)
+    /// Find index and element with associated key `x` using Binary Search.
+    /// This function assumes `self` is sorted.
+    /// - Parameter with m:
+    ///     A functions returning comparable key.
+    func indexAndElement<C>(of x: C, with m: (Value) -> C) -> IndexAndElement? where C: Comparable {
+        switch self {
+        case .leaf(let a):
+            return a.binarySearch.indexAndElement(of: x, with: m)
+        case .branch(let a, let b):
+            switch (a.count, b.count) {
+            case (0,0): return nil
+            case (_,0): return a.binarySearch.indexAndElement(of: x, with: m)
+            case (0,_):
+                guard let (i,e) = b.binarySearch.indexAndElement(of: x, with: m) else { return nil }
+                return (a.count + i,e)
+            default:
+                let y = m(b.first!)
+                if x < y {
+                    return a.binarySearch.indexAndElement(of :x, with: m)
+                }
+                else {
+                    guard let (i,e) = b.binarySearch.indexAndElement(of: x, with: m) else { return nil }
+                    return (a.count + i,e)
+                }
+            }
+        }
+    }
+    func indexToPlace<C>(_ x: C, with m: (Value) -> C) -> Int where C: Comparable {
+        switch self {
+        case .leaf(let a):
+            return a.binarySearch.indexToPlace(x, with: m)
+        case .branch(let a, let b):
+            switch (a.count, b.count) {
+            case (0,0): return 0
+            case (_,0): return a.binarySearch.indexToPlace(x, with: m)
+            case (0,_): return a.count + b.binarySearch.indexToPlace(x, with: m)
+            default:
+                let y = m(b.first!)
+                if x < y {
+                    return a.binarySearch.indexToPlace(x, with: m)
+                }
+                else {
+                    return a.count + b.binarySearch.indexToPlace(x, with: m)
+                }
+            }
+        }
+    }
+}
+
+// MARK: Binary Search (SBTL)
+extension SBTL {
+    var binarySearch: SBTLBinarySearch<Element> {
+        return SBTLBinarySearch(base: self)
+    }
+}
+struct SBTLBinarySearch<Element>:
+BinarySearchProtocol,
+TreeBinarySearchProtocol where
+Element: SBTLValueProtocol {
+    typealias Base = SBTL<Element>
+    var base: Base
+}
+extension SBTLBinarySearch {
+    typealias IndexAndElement = (index: Int, element: Element)
+    func indexAndElement<C>(of x: C, with m: (Element) -> C) -> IndexAndElement? where C: Comparable {
+        return base.count == 0 ? nil : base.content.indexAndElement(of: x, with: m)
+    }
+    func indexToPlace<C>(_ x: C, with m: (Element) -> C) -> Int where C: Comparable {
+        return base.count == 0 ? 0 : base.content.indexToPlace(x, with: m)
+    }
+}

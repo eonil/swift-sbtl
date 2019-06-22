@@ -52,15 +52,17 @@ func run(_ single_op: (Int) -> Void) -> [Double] {
 var db = DB(iterationCount: averageCount)
 
 public protocol AAPerfMeasuringProtocol {
-    associatedtype Key
-    associatedtype Value
+    associatedtype Element
     init()
     var count: Int { get }
-    subscript(_ k: Key) -> Value? { get set }
+    subscript(_ i: Int) -> Element { get set }
+    mutating func insert(_ e: Element, at i: Int)
+    @discardableResult
+    mutating func remove(at i: Int) -> Element
 }
-extension Dictionary: AAPerfMeasuringProtocol {}
-extension Map: AAPerfMeasuringProtocol {}
-extension SBTLMap: AAPerfMeasuringProtocol {}
+extension Array: AAPerfMeasuringProtocol {}
+extension List: AAPerfMeasuringProtocol {}
+extension SBTL: AAPerfMeasuringProtocol {}
 
 struct CRUDNames {
     var get: DB.Name
@@ -69,7 +71,7 @@ struct CRUDNames {
     var remove: DB.Name
 }
 
-func runCRUDPackage<T>(_: T.Type, _ ns: CRUDNames) where T: AAPerfMeasuringProtocol, T.Key == Int, T.Value == Int {
+func runCRUDPackage<T>(_: T.Type, _ ns: CRUDNames) where T: AAPerfMeasuringProtocol, T.Element == Int {
     for i in 0..<averageCount {
         do {
             let n = ns.get
@@ -79,14 +81,14 @@ func runCRUDPackage<T>(_: T.Type, _ ns: CRUDNames) where T: AAPerfMeasuringProto
             let ks = Array(0..<m).shuffled()
             var pd = T()
             for i in 0..<m {
-                pd[i] = i
+                pd.insert(i, at: pd.count)
             }
             precondition(pd.count == m)
 
             var pd1 = pd
             let ss = run { i in
                 let k = ks[i]
-                let v = pd[k]!
+                let v = pd[k]
                 pd1 = pd
                 precondition(v == k)
                 precondition(pd1.count == pd.count)
@@ -97,16 +99,18 @@ func runCRUDPackage<T>(_: T.Type, _ ns: CRUDNames) where T: AAPerfMeasuringProto
             print("--------------------------------------------")
         }
         do {
+            // Insert at random position.
             let n = ns.insert
             print("[\(i)] \(n)")
             print("--------------------------------------------")
             let m = outerLoopCount * innerLoopCount
-            let ks = Array(0..<m).shuffled()
+            let vs = Array(0..<m).shuffled()
             var pd = T()
             var pd1 = pd // Keep one copy to test persistency.
             let ss = run { i in
-                let k = ks[i]
-                pd[k] = i
+                let v = vs[i]
+                let k = pd.count == 0 ? 0 : v % pd.count
+                pd.insert(v, at: k)
                 pd1 = pd
             }
             precondition(pd.count == pd1.count)
@@ -121,7 +125,7 @@ func runCRUDPackage<T>(_: T.Type, _ ns: CRUDNames) where T: AAPerfMeasuringProto
             let ks = Array(0..<m).shuffled()
             var pd = T()
             for i in 0..<m {
-                pd[i] = i
+                pd.insert(i, at: pd.count)
             }
             precondition(pd.count == m)
 
@@ -138,6 +142,7 @@ func runCRUDPackage<T>(_: T.Type, _ ns: CRUDNames) where T: AAPerfMeasuringProto
             print("--------------------------------------------")
         }
         do {
+            // Remove at random position.
             let n = ns.remove
             print("[\(i)] \(n)")
             print("--------------------------------------------")
@@ -145,14 +150,15 @@ func runCRUDPackage<T>(_: T.Type, _ ns: CRUDNames) where T: AAPerfMeasuringProto
             var ks = Array(0..<m).shuffled()
             var pd = T()
             for i in 0..<m {
-                pd[i] = i
+                pd.insert(i, at: pd.count)
             }
             precondition(pd.count == m)
 
             var pd1 = pd
             let ss = run { i in
                 let k = ks.removeLast()
-                pd[k] = nil
+                let m = pd.count == 0 ? 0 : k % pd.count
+                pd.remove(at: m)
                 pd1 = pd
                 precondition(pd.count == ks.count)
                 precondition(pd1.count == pd.count)
@@ -165,19 +171,19 @@ func runCRUDPackage<T>(_: T.Type, _ ns: CRUDNames) where T: AAPerfMeasuringProto
     }
 }
 
-runCRUDPackage(Dictionary<Int,Int>.self, CRUDNames(
-    get: .stdGet,
-    insert: .stdInsert,
-    update: .stdUpdate,
-    remove: .stdRemove))
-runCRUDPackage(Map<Int,Int>.self, CRUDNames(
-    get: .btreeGet,
-    insert: .btreeInsert,
-    update: .btreeUpdate,
-    remove: .btreeRemove))
-runCRUDPackage(SBTLMap<Int,Int>.self, CRUDNames(
+runCRUDPackage(SBTL<Int>.self, CRUDNames(
     get: .sbtlGet,
     insert: .sbtlInsert,
     update: .sbtlUpdate,
     remove: .sbtlRemove))
+runCRUDPackage(List<Int>.self, CRUDNames(
+    get: .btreeGet,
+    insert: .btreeInsert,
+    update: .btreeUpdate,
+    remove: .btreeRemove))
+runCRUDPackage(Array<Int>.self, CRUDNames(
+    get: .stdGet,
+    insert: .stdInsert,
+    update: .stdUpdate,
+    remove: .stdRemove))
 db.print()

@@ -1,10 +1,11 @@
 //
 //  SBTLMock.swift
-//  SBTLUnitTests
+//  SBTLTest
 //
 //  Created by Henry on 2019/06/17.
 //
 
+import XCTest
 import GameKit
 @testable import SBTL
 
@@ -31,11 +32,16 @@ struct SBTLMock {
         default: fatalError()
         }
     }
-    mutating func insertRandom() {
-        let v = rprng.nextWithRotation()
-        let i = rprng.nextWithRotation() % (sys.count+1)
+    mutating func insert(_ v: Int, at i: Int) {
         sys.insert(v, at: i)
         impl.insert(v, at: i)
+    }
+    mutating func insertRandom(_ n: Int = 1) {
+        for _ in 0..<n {
+            let v = rprng.nextWithRotation()
+            let i = rprng.nextWithRotation() % (sys.count+1)
+            insert(v, at: i)
+        }
     }
     mutating func replaceRandom() {
         guard sys.count > 0 else { return }
@@ -49,6 +55,11 @@ struct SBTLMock {
         let i = rprng.nextWithRotation() % sys.count
         sys.remove(at: i)
         impl.remove(at: i)
+    }
+
+    mutating func sort() {
+        sys.sort()
+        impl.sort()
     }
 
     func sysIndexAndOffset(for w: Int) -> (index: Int, offset: Int) {
@@ -66,6 +77,38 @@ struct SBTLMock {
     }
     func implIndexAndOffset(for w: Int) -> (index: Int, offset: Int) {
         return impl.indexAndOffset(for: w)
+    }
+
+    func validateBinarySearch(for e: Int) {
+        assert(sys == sys.sorted(), "You can run this test only on sorted collection.")
+        let i = sys.firstIndex(of: e)
+        let a = sys.binarySearch.indexAndElement(of: e)
+        let b = impl.binarySearch.indexAndElement(of: e)
+        XCTAssertEqual(i, a?.index)
+        XCTAssertEqual(i, b?.index)
+        if let i = i {
+            XCTAssertEqual(sys[i], a?.element)
+            XCTAssertEqual(sys[i], b?.element)
+        }
+
+        let x = sys.binarySearch.index(of: e)
+        let y = impl.binarySearch.index(of: e)
+        XCTAssertEqual(i, x)
+        XCTAssertEqual(i, y)
+    }
+    mutating func validateBinarySearchRandom(_ n: Int = 1) {
+        for _ in 0..<n {
+            let i = rprng.nextWithRotation(in: sys.indices)
+            let v = sys[i]
+            validateBinarySearch(for: v)
+        }
+    }
+
+    func sorted() -> SBTLMock {
+        var x = self
+        x.sys.sort()
+        x.impl.sort()
+        return x
     }
 }
 

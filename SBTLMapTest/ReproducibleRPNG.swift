@@ -1,6 +1,6 @@
 //
 //  ReproducibleRPNG.swift
-//  SBTLUnitTests
+//  SBTLTest
 //
 //  Created by Henry on 2019/06/17.
 //
@@ -9,8 +9,8 @@ import Foundation
 import GameKit
 
 struct ReproducibleRPNG {
-    var samples = [Int]()
-    var currentIndex = 0
+    private(set) var samples = [Int]()
+    private(set) var currentIndex = 0
     init(_ n: Int) {
         precondition(n>0)
         samples.reserveCapacity(n)

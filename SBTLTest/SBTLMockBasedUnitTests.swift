@@ -1,6 +1,6 @@
 //
 //  SBTLMockBasedUnitTests.swift
-//  SBTLUnitTests
+//  SBTLTest
 //
 //  Created by Henry on 2019/06/17.
 //
@@ -114,6 +114,8 @@ class SBTLMockBasedUnitTests: XCTestCase {
         for _ in 0..<(100_000) {
             m.appendRandom()
         }
+        var m1 = m.sorted()
+        m1.validateBinarySearchRandom()
         XCTAssertTrue(m.impl.isEmpty || !m.impl.containsAnyEmptyLeaf())
         XCTAssertTrue(m.impl.isWellBalanced())
         XCTAssertEqual(m.sys, Array(m.impl))
@@ -124,11 +126,15 @@ class SBTLMockBasedUnitTests: XCTestCase {
             if i % 10_000 == 0 {
                 print("\(#function) #\(i), count: \(m.impl.count)")
                 XCTAssertEqual(m.sys, Array(m.impl))
+                var m1 = m.sorted()
+                m1.validateBinarySearchRandom()
             }
         }
         XCTAssertTrue(m.impl.isEmpty || !m.impl.containsAnyEmptyLeaf())
         XCTAssertTrue(m.impl.isWellBalanced())
         XCTAssertEqual(m.sys, Array(m.impl))
+        m1 = m.sorted()
+        m1.validateBinarySearchRandom()
     }
 }
 

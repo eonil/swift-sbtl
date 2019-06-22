@@ -20,6 +20,9 @@ extension BTLEmptySumValueWrapper: Equatable where Wrapped: Equatable {
     static func == (_ a: BTLEmptySumValueWrapper, _ b: BTLEmptySumValueWrapper) -> Bool {
         return a.value == b.value
     }
+    static func != (_ a: BTLEmptySumValueWrapper, _ b: BTLEmptySumValueWrapper) -> Bool {
+        return a.value != b.value
+    }
 }
 extension BTLEmptySumValueWrapper: Comparable where Wrapped: Comparable {
     static func < (_ a: BTLEmptySumValueWrapper, _ b: BTLEmptySumValueWrapper) -> Bool {
@@ -37,19 +40,14 @@ extension BTLEmptySumValueWrapper: Comparable where Wrapped: Comparable {
 }
 struct BTLEmptySum: AdditiveArithmetic, Comparable {
     static let zero = BTLEmptySum()
-    static func + (_ a: BTLEmptySum, _ b: BTLEmptySum) -> BTLEmptySum {
-        return BTLEmptySum()
-    }
-    static func += (_ a: inout BTLEmptySum, _ b: BTLEmptySum) {
-    }
-    static func - (_ a: BTLEmptySum, _ b: BTLEmptySum) -> BTLEmptySum {
-        return BTLEmptySum()
-    }
-    static func -= (_ a: inout BTLEmptySum, _ b: BTLEmptySum) {
-    }
+
     static func == (_ a: BTLEmptySum, _ b: BTLEmptySum) -> Bool {
         return true
     }
+    static func != (_ a: BTLEmptySum, _ b: BTLEmptySum) -> Bool {
+        return true
+    }
+
     static func < (_ a: BTLEmptySum, _ b: BTLEmptySum) -> Bool {
         return false
     }
@@ -61,5 +59,16 @@ struct BTLEmptySum: AdditiveArithmetic, Comparable {
     }
     static func >= (_ a: BTLEmptySum, _ b: BTLEmptySum) -> Bool {
         return true
+    }
+
+    static func + (_ a: BTLEmptySum, _ b: BTLEmptySum) -> BTLEmptySum {
+        return BTLEmptySum()
+    }
+    static func += (_ a: inout BTLEmptySum, _ b: BTLEmptySum) {
+    }
+    static func - (_ a: BTLEmptySum, _ b: BTLEmptySum) -> BTLEmptySum {
+        return BTLEmptySum()
+    }
+    static func -= (_ a: inout BTLEmptySum, _ b: BTLEmptySum) {
     }
 }

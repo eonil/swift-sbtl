@@ -14,33 +14,26 @@
 		450B3FAD22BD039C0091D6BB /* SBTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9422B77D0300306395 /* SBTL.swift */; };
 		450B3FAE22BD039C0091D6BB /* SBTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884722B9E529000628D0 /* SBTLSet.swift */; };
 		450B3FAF22BD039C0091D6BB /* SBTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884522B9E523000628D0 /* SBTLMap.swift */; };
-		450B3FB022BD039C0091D6BB /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884922B9FC03000628D0 /* BinarySearch.swift */; };
 		450F1B1D22BD0BBB00BDB822 /* String.SBTLValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F1B1C22BD0BBB00BDB822 /* String.SBTLValue.swift */; };
 		455B251322BD29330039B96A /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B24FD22BD292C0039B96A /* DB.swift */; };
 		455B251422BD29330039B96A /* FormattingUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250022BD292C0039B96A /* FormattingUtilities.swift */; };
 		455B251522BD29330039B96A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B24FC22BD292C0039B96A /* main.swift */; };
-		455B252622BD293C0039B96A /* SortedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250322BD292C0039B96A /* SortedSet.swift */; };
-		455B252722BD293C0039B96A /* BTreeComparisons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250422BD292C0039B96A /* BTreeComparisons.swift */; };
-		455B252822BD293C0039B96A /* SortedBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250522BD292C0039B96A /* SortedBag.swift */; };
-		455B252922BD293C0039B96A /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250622BD292C0039B96A /* Compatibility.swift */; };
-		455B252A22BD293C0039B96A /* BTreePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250722BD292C0039B96A /* BTreePath.swift */; };
-		455B252B22BD293C0039B96A /* BTreeIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250822BD292C0039B96A /* BTreeIterator.swift */; };
-		455B252C22BD293C0039B96A /* BridgedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250922BD292C0039B96A /* BridgedList.swift */; };
-		455B252D22BD293C0039B96A /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250A22BD292C0039B96A /* List.swift */; };
-		455B252E22BD293C0039B96A /* BTreeCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250B22BD292C0039B96A /* BTreeCursor.swift */; };
-		455B252F22BD293C0039B96A /* BTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250C22BD292C0039B96A /* BTree.swift */; };
-		455B253022BD293C0039B96A /* BTreeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250D22BD292C0039B96A /* BTreeBuilder.swift */; };
-		455B253122BD293C0039B96A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250E22BD292C0039B96A /* Map.swift */; };
-		455B253222BD293C0039B96A /* BTreeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250F22BD292C0039B96A /* BTreeIndex.swift */; };
-		455B253322BD293C0039B96A /* BTreeMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B251022BD292C0039B96A /* BTreeMerger.swift */; };
-		455B253422BD293C0039B96A /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B251122BD292C0039B96A /* Weak.swift */; };
-		455B253522BD293C0039B96A /* BTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B251222BD292C0039B96A /* BTreeNode.swift */; };
-		45A0884622B9E523000628D0 /* SBTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884522B9E523000628D0 /* SBTLMap.swift */; };
-		45A0884822B9E529000628D0 /* SBTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884722B9E529000628D0 /* SBTLSet.swift */; };
-		45A0884A22B9FC03000628D0 /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884922B9FC03000628D0 /* BinarySearch.swift */; };
-		45A0884B22BA0333000628D0 /* SBTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884522B9E523000628D0 /* SBTLMap.swift */; };
-		45A0884C22BA0333000628D0 /* SBTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884722B9E529000628D0 /* SBTLSet.swift */; };
-		45A0884D22BA0333000628D0 /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884922B9FC03000628D0 /* BinarySearch.swift */; };
+		455B253822BD9BE40039B96A /* SortedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250322BD292C0039B96A /* SortedSet.swift */; };
+		455B253922BD9BE40039B96A /* BTreeComparisons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250422BD292C0039B96A /* BTreeComparisons.swift */; };
+		455B253A22BD9BE40039B96A /* SortedBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250522BD292C0039B96A /* SortedBag.swift */; };
+		455B253B22BD9BE40039B96A /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250622BD292C0039B96A /* Compatibility.swift */; };
+		455B253C22BD9BE40039B96A /* BTreePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250722BD292C0039B96A /* BTreePath.swift */; };
+		455B253D22BD9BE40039B96A /* BTreeIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250822BD292C0039B96A /* BTreeIterator.swift */; };
+		455B253E22BD9BE40039B96A /* BridgedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250922BD292C0039B96A /* BridgedList.swift */; };
+		455B253F22BD9BE40039B96A /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250A22BD292C0039B96A /* List.swift */; };
+		455B254022BD9BE40039B96A /* BTreeCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250B22BD292C0039B96A /* BTreeCursor.swift */; };
+		455B254122BD9BE40039B96A /* BTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250C22BD292C0039B96A /* BTree.swift */; };
+		455B254222BD9BE40039B96A /* BTreeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250D22BD292C0039B96A /* BTreeBuilder.swift */; };
+		455B254322BD9BE40039B96A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250E22BD292C0039B96A /* Map.swift */; };
+		455B254422BD9BE40039B96A /* BTreeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B250F22BD292C0039B96A /* BTreeIndex.swift */; };
+		455B254522BD9BE40039B96A /* BTreeMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B251022BD292C0039B96A /* BTreeMerger.swift */; };
+		455B254622BD9BE40039B96A /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B251122BD292C0039B96A /* Weak.swift */; };
+		455B254722BD9BE40039B96A /* BTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B251222BD292C0039B96A /* BTreeNode.swift */; };
 		45A0885022BA037D000628D0 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884E22BA037D000628D0 /* DB.swift */; };
 		45A0885122BA037D000628D0 /* FormattingUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884F22BA037D000628D0 /* FormattingUtilities.swift */; };
 		45A0886322BA0429000628D0 /* SortedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0885322BA0429000628D0 /* SortedSet.swift */; };
@@ -59,25 +52,37 @@
 		45A0887022BA0429000628D0 /* BTreeMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0886022BA0429000628D0 /* BTreeMerger.swift */; };
 		45A0887122BA0429000628D0 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0886122BA0429000628D0 /* Weak.swift */; };
 		45A0887222BA0429000628D0 /* BTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0886222BA0429000628D0 /* BTreeNode.swift */; };
-		45A0887722BA5651000628D0 /* BTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887622BA5651000628D0 /* BTLMap.swift */; };
-		45A0887922BA565A000628D0 /* BTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887822BA565A000628D0 /* BTLSet.swift */; };
-		45A0887B22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887A22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift */; };
-		45A0887C22BA5B9D000628D0 /* BTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887822BA565A000628D0 /* BTLSet.swift */; };
-		45A0887D22BA5B9D000628D0 /* BTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887622BA5651000628D0 /* BTLMap.swift */; };
-		45A0887E22BA5B9D000628D0 /* BTLEmptySumValueWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887A22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift */; };
 		45B30ABE22BD0E13005B4E61 /* SBTLMapMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B30ABD22BD0E13005B4E61 /* SBTLMapMock.swift */; };
-		45B30AC022BD0F04005B4E61 /* ReproducibleRPNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B30ABF22BD0F03005B4E61 /* ReproducibleRPNG.swift */; };
 		45B81C8B22B77CE600306395 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C8A22B77CE600306395 /* main.swift */; };
-		45B81C9522B77D0300306395 /* BTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9322B77D0300306395 /* BTL.swift */; };
-		45B81C9622B77D0300306395 /* SBTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9422B77D0300306395 /* SBTL.swift */; };
-		45B81C9722B77D1000306395 /* BTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9322B77D0300306395 /* BTL.swift */; };
-		45B81C9822B77D1000306395 /* SBTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9422B77D0300306395 /* SBTL.swift */; };
-		45B81CA022B77D2500306395 /* SBTLUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9F22B77D2500306395 /* SBTLUnitTests.swift */; };
 		45B81CA222B77D2500306395 /* libSBTL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B81C7A22B77CD200306395 /* libSBTL.a */; };
 		45B81CA922B77EE100306395 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B81CA822B77EE100306395 /* GameKit.framework */; };
-		45B81CAB22B77EF100306395 /* SBTLMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81CAA22B77EF100306395 /* SBTLMock.swift */; };
-		45B81CB122B77F7600306395 /* ReproducibleRPNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81CB022B77F7600306395 /* ReproducibleRPNG.swift */; };
-		45B81CB322B781B000306395 /* SBTLMockBasedUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81CB222B781B000306395 /* SBTLMockBasedUnitTests.swift */; };
+		45D062FD22BDBD8100CD9A08 /* BinarySearchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B7495922BDBB44004F29A4 /* BinarySearchTest.swift */; };
+		45D062FE22BDBD8100CD9A08 /* SBTLUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9F22B77D2500306395 /* SBTLUnitTests.swift */; };
+		45D062FF22BDBD8100CD9A08 /* SBTLMockBasedUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81CB222B781B000306395 /* SBTLMockBasedUnitTests.swift */; };
+		45D0630022BDBD8100CD9A08 /* SBTLMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81CAA22B77EF100306395 /* SBTLMock.swift */; };
+		45D0630122BDBD8100CD9A08 /* ReproducibleRPNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81CB022B77F7600306395 /* ReproducibleRPNG.swift */; };
+		45D0630622BDBDBB00CD9A08 /* ReproducibleRPNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D0630522BDBDBB00CD9A08 /* ReproducibleRPNG.swift */; };
+		45D0630822BDBEB000CD9A08 /* BinarySearchMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D0630722BDBEB000CD9A08 /* BinarySearchMock.swift */; };
+		45D0631322BDCC7F00CD9A08 /* BTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9322B77D0300306395 /* BTL.swift */; };
+		45D0631422BDCC7F00CD9A08 /* BTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887822BA565A000628D0 /* BTLSet.swift */; };
+		45D0631522BDCC7F00CD9A08 /* BTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887622BA5651000628D0 /* BTLMap.swift */; };
+		45D0631622BDCC7F00CD9A08 /* BTLEmptySumValueWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887A22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift */; };
+		45D0631722BDCC7F00CD9A08 /* SBTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9422B77D0300306395 /* SBTL.swift */; };
+		45D0631822BDCC7F00CD9A08 /* SBTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884722B9E529000628D0 /* SBTLSet.swift */; };
+		45D0631922BDCC7F00CD9A08 /* SBTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884522B9E523000628D0 /* SBTLMap.swift */; };
+		45D0631B22BDCC7F00CD9A08 /* BinarySearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D0630922BDBEC500CD9A08 /* BinarySearchProtocol.swift */; };
+		45D0631C22BDCC7F00CD9A08 /* ArraySliceBinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D0630B22BDC49000CD9A08 /* ArraySliceBinarySearch.swift */; };
+		45D0631E22BDCC8000CD9A08 /* BinarySearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D0630922BDBEC500CD9A08 /* BinarySearchProtocol.swift */; };
+		45D0631F22BDCC8000CD9A08 /* ArraySliceBinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D0630B22BDC49000CD9A08 /* ArraySliceBinarySearch.swift */; };
+		45D0632022BDCC8100CD9A08 /* BTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9322B77D0300306395 /* BTL.swift */; };
+		45D0632122BDCC8100CD9A08 /* BTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887822BA565A000628D0 /* BTLSet.swift */; };
+		45D0632222BDCC8100CD9A08 /* BTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887622BA5651000628D0 /* BTLMap.swift */; };
+		45D0632322BDCC8100CD9A08 /* BTLEmptySumValueWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0887A22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift */; };
+		45D0632422BDCC8100CD9A08 /* SBTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B81C9422B77D0300306395 /* SBTL.swift */; };
+		45D0632522BDCC8100CD9A08 /* SBTLSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884722B9E529000628D0 /* SBTLSet.swift */; };
+		45D0632622BDCC8100CD9A08 /* SBTLMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0884522B9E523000628D0 /* SBTLMap.swift */; };
+		45D0632822BDCC8100CD9A08 /* BinarySearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D0630922BDBEC500CD9A08 /* BinarySearchProtocol.swift */; };
+		45D0632922BDCC8100CD9A08 /* ArraySliceBinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D0630B22BDC49000CD9A08 /* ArraySliceBinarySearch.swift */; };
 		45DED57E22BD058000976D25 /* SBTLMapTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DED57D22BD058000976D25 /* SBTLMapTest.swift */; };
 		45DED58022BD058000976D25 /* libSBTL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B81C7A22B77CD200306395 /* libSBTL.a */; };
 		45DED58722BD062B00976D25 /* Int.SBTLValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DED58622BD062B00976D25 /* Int.SBTLValue.swift */; };
@@ -149,7 +154,6 @@
 		455B251222BD292C0039B96A /* BTreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTreeNode.swift; sourceTree = "<group>"; };
 		45A0884522B9E523000628D0 /* SBTLMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBTLMap.swift; sourceTree = "<group>"; };
 		45A0884722B9E529000628D0 /* SBTLSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBTLSet.swift; sourceTree = "<group>"; };
-		45A0884922B9FC03000628D0 /* BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
 		45A0884E22BA037D000628D0 /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		45A0884F22BA037D000628D0 /* FormattingUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormattingUtilities.swift; sourceTree = "<group>"; };
 		45A0885322BA0429000628D0 /* SortedSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortedSet.swift; sourceTree = "<group>"; };
@@ -175,13 +179,13 @@
 		45A0887822BA565A000628D0 /* BTLSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTLSet.swift; sourceTree = "<group>"; };
 		45A0887A22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTLEmptySumValueWrapper.swift; sourceTree = "<group>"; };
 		45B30ABD22BD0E13005B4E61 /* SBTLMapMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBTLMapMock.swift; sourceTree = "<group>"; };
-		45B30ABF22BD0F03005B4E61 /* ReproducibleRPNG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReproducibleRPNG.swift; path = SBTLUnitTests/ReproducibleRPNG.swift; sourceTree = SOURCE_ROOT; };
+		45B7495922BDBB44004F29A4 /* BinarySearchTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearchTest.swift; sourceTree = "<group>"; };
 		45B81C7A22B77CD200306395 /* libSBTL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSBTL.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B81C8822B77CE600306395 /* SBTLBenchmark */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SBTLBenchmark; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B81C8A22B77CE600306395 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		45B81C9322B77D0300306395 /* BTL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTL.swift; sourceTree = "<group>"; };
 		45B81C9422B77D0300306395 /* SBTL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBTL.swift; sourceTree = "<group>"; };
-		45B81C9D22B77D2500306395 /* SBTLUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SBTLUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		45B81C9D22B77D2500306395 /* SBTLTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SBTLTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B81C9F22B77D2500306395 /* SBTLUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBTLUnitTests.swift; sourceTree = "<group>"; };
 		45B81CA122B77D2500306395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45B81CA822B77EE100306395 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -189,6 +193,10 @@
 		45B81CB022B77F7600306395 /* ReproducibleRPNG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReproducibleRPNG.swift; sourceTree = "<group>"; };
 		45B81CB222B781B000306395 /* SBTLMockBasedUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBTLMockBasedUnitTests.swift; sourceTree = "<group>"; };
 		45B81CB422B79C0100306395 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		45D0630522BDBDBB00CD9A08 /* ReproducibleRPNG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReproducibleRPNG.swift; sourceTree = "<group>"; };
+		45D0630722BDBEB000CD9A08 /* BinarySearchMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearchMock.swift; sourceTree = "<group>"; };
+		45D0630922BDBEC500CD9A08 /* BinarySearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearchProtocol.swift; sourceTree = "<group>"; };
+		45D0630B22BDC49000CD9A08 /* ArraySliceBinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraySliceBinarySearch.swift; sourceTree = "<group>"; };
 		45DED57B22BD058000976D25 /* SBTLMapTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SBTLMapTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DED57D22BD058000976D25 /* SBTLMapTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBTLMapTest.swift; sourceTree = "<group>"; };
 		45DED57F22BD058000976D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -303,7 +311,7 @@
 				45B81CB422B79C0100306395 /* README.md */,
 				4548E2AE22BAA4DC0099E410 /* Package.swift */,
 				45B81C7C22B77CD200306395 /* SBTL */,
-				45B81C9E22B77D2500306395 /* SBTLUnitTests */,
+				45B81C9E22B77D2500306395 /* SBTLTest */,
 				45DED57C22BD058000976D25 /* SBTLMapTest */,
 				45B81C8922B77CE600306395 /* SBTLBenchmark */,
 				450B3F7922BD03710091D6BB /* SBTLMapBenchmark */,
@@ -317,7 +325,7 @@
 			children = (
 				45B81C7A22B77CD200306395 /* libSBTL.a */,
 				45B81C8822B77CE600306395 /* SBTLBenchmark */,
-				45B81C9D22B77D2500306395 /* SBTLUnitTests.xctest */,
+				45B81C9D22B77D2500306395 /* SBTLTest.xctest */,
 				450B3F7822BD03710091D6BB /* SBTLMapBenchmark */,
 				45DED57B22BD058000976D25 /* SBTLMapTest.xctest */,
 			);
@@ -328,13 +336,11 @@
 			isa = PBXGroup;
 			children = (
 				45B81C9322B77D0300306395 /* BTL.swift */,
-				45A0887822BA565A000628D0 /* BTLSet.swift */,
-				45A0887622BA5651000628D0 /* BTLMap.swift */,
+				45D0632C22BDE07700CD9A08 /* NotReadyYet */,
 				45A0887A22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift */,
 				45B81C9422B77D0300306395 /* SBTL.swift */,
-				45A0884722B9E529000628D0 /* SBTLSet.swift */,
-				45A0884522B9E523000628D0 /* SBTLMap.swift */,
-				45A0884922B9FC03000628D0 /* BinarySearch.swift */,
+				45D0630922BDBEC500CD9A08 /* BinarySearchProtocol.swift */,
+				45D0630B22BDC49000CD9A08 /* ArraySliceBinarySearch.swift */,
 			);
 			path = SBTL;
 			sourceTree = "<group>";
@@ -361,16 +367,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		45B81C9E22B77D2500306395 /* SBTLUnitTests */ = {
+		45B81C9E22B77D2500306395 /* SBTLTest */ = {
 			isa = PBXGroup;
 			children = (
+				45B7495922BDBB44004F29A4 /* BinarySearchTest.swift */,
+				45D0630722BDBEB000CD9A08 /* BinarySearchMock.swift */,
 				45B81C9F22B77D2500306395 /* SBTLUnitTests.swift */,
 				45B81CB222B781B000306395 /* SBTLMockBasedUnitTests.swift */,
 				45B81CAA22B77EF100306395 /* SBTLMock.swift */,
 				45B81CB022B77F7600306395 /* ReproducibleRPNG.swift */,
 				45B81CA122B77D2500306395 /* Info.plist */,
 			);
-			path = SBTLUnitTests;
+			path = SBTLTest;
+			sourceTree = "<group>";
+		};
+		45D0632C22BDE07700CD9A08 /* NotReadyYet */ = {
+			isa = PBXGroup;
+			children = (
+				45A0887822BA565A000628D0 /* BTLSet.swift */,
+				45A0887622BA5651000628D0 /* BTLMap.swift */,
+				45A0884722B9E529000628D0 /* SBTLSet.swift */,
+				45A0884522B9E523000628D0 /* SBTLMap.swift */,
+			);
+			path = NotReadyYet;
 			sourceTree = "<group>";
 		};
 		45DED57C22BD058000976D25 /* SBTLMapTest */ = {
@@ -380,7 +399,7 @@
 				45B30ABD22BD0E13005B4E61 /* SBTLMapMock.swift */,
 				45DED58622BD062B00976D25 /* Int.SBTLValue.swift */,
 				450F1B1C22BD0BBB00BDB822 /* String.SBTLValue.swift */,
-				45B30ABF22BD0F03005B4E61 /* ReproducibleRPNG.swift */,
+				45D0630522BDBDBB00CD9A08 /* ReproducibleRPNG.swift */,
 				45DED57F22BD058000976D25 /* Info.plist */,
 			);
 			path = SBTLMapTest;
@@ -450,9 +469,9 @@
 			productReference = 45B81C8822B77CE600306395 /* SBTLBenchmark */;
 			productType = "com.apple.product-type.tool";
 		};
-		45B81C9C22B77D2500306395 /* SBTLUnitTests */ = {
+		45B81C9C22B77D2500306395 /* SBTLTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 45B81CA522B77D2500306395 /* Build configuration list for PBXNativeTarget "SBTLUnitTests" */;
+			buildConfigurationList = 45B81CA522B77D2500306395 /* Build configuration list for PBXNativeTarget "SBTLTest" */;
 			buildPhases = (
 				45B81C9922B77D2500306395 /* Sources */,
 				45B81C9A22B77D2500306395 /* Frameworks */,
@@ -463,9 +482,9 @@
 			dependencies = (
 				45B81CA422B77D2500306395 /* PBXTargetDependency */,
 			);
-			name = SBTLUnitTests;
+			name = SBTLTest;
 			productName = WBTLUnitTests;
-			productReference = 45B81C9D22B77D2500306395 /* SBTLUnitTests.xctest */;
+			productReference = 45B81C9D22B77D2500306395 /* SBTLTest.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		45DED57A22BD058000976D25 /* SBTLMapTest */ = {
@@ -528,7 +547,7 @@
 			projectRoot = "";
 			targets = (
 				45B81C7922B77CD200306395 /* SBTL */,
-				45B81C9C22B77D2500306395 /* SBTLUnitTests */,
+				45B81C9C22B77D2500306395 /* SBTLTest */,
 				45DED57A22BD058000976D25 /* SBTLMapTest */,
 				45B81C8722B77CE600306395 /* SBTLBenchmark */,
 				450B3F7722BD03710091D6BB /* SBTLMapBenchmark */,
@@ -561,30 +580,31 @@
 				450B3FAA22BD039C0091D6BB /* BTLSet.swift in Sources */,
 				455B251422BD29330039B96A /* FormattingUtilities.swift in Sources */,
 				450B3FAF22BD039C0091D6BB /* SBTLMap.swift in Sources */,
-				455B253422BD293C0039B96A /* Weak.swift in Sources */,
+				455B254622BD9BE40039B96A /* Weak.swift in Sources */,
 				455B251322BD29330039B96A /* DB.swift in Sources */,
+				45D0631F22BDCC8000CD9A08 /* ArraySliceBinarySearch.swift in Sources */,
 				450B3FAE22BD039C0091D6BB /* SBTLSet.swift in Sources */,
-				455B253522BD293C0039B96A /* BTreeNode.swift in Sources */,
-				455B252B22BD293C0039B96A /* BTreeIterator.swift in Sources */,
+				455B254722BD9BE40039B96A /* BTreeNode.swift in Sources */,
+				455B253D22BD9BE40039B96A /* BTreeIterator.swift in Sources */,
 				450B3FA922BD039C0091D6BB /* BTL.swift in Sources */,
-				455B252C22BD293C0039B96A /* BridgedList.swift in Sources */,
+				455B253E22BD9BE40039B96A /* BridgedList.swift in Sources */,
 				450B3FAB22BD039C0091D6BB /* BTLMap.swift in Sources */,
-				455B252622BD293C0039B96A /* SortedSet.swift in Sources */,
-				455B252722BD293C0039B96A /* BTreeComparisons.swift in Sources */,
-				455B252A22BD293C0039B96A /* BTreePath.swift in Sources */,
+				455B253822BD9BE40039B96A /* SortedSet.swift in Sources */,
+				455B253922BD9BE40039B96A /* BTreeComparisons.swift in Sources */,
+				455B253C22BD9BE40039B96A /* BTreePath.swift in Sources */,
 				455B251522BD29330039B96A /* main.swift in Sources */,
-				455B253222BD293C0039B96A /* BTreeIndex.swift in Sources */,
-				450B3FB022BD039C0091D6BB /* BinarySearch.swift in Sources */,
-				455B252F22BD293C0039B96A /* BTree.swift in Sources */,
+				455B254422BD9BE40039B96A /* BTreeIndex.swift in Sources */,
+				455B254122BD9BE40039B96A /* BTree.swift in Sources */,
 				450B3FAD22BD039C0091D6BB /* SBTL.swift in Sources */,
 				450B3FAC22BD039C0091D6BB /* BTLEmptySumValueWrapper.swift in Sources */,
-				455B252E22BD293C0039B96A /* BTreeCursor.swift in Sources */,
-				455B253322BD293C0039B96A /* BTreeMerger.swift in Sources */,
-				455B252822BD293C0039B96A /* SortedBag.swift in Sources */,
-				455B253122BD293C0039B96A /* Map.swift in Sources */,
-				455B252D22BD293C0039B96A /* List.swift in Sources */,
-				455B253022BD293C0039B96A /* BTreeBuilder.swift in Sources */,
-				455B252922BD293C0039B96A /* Compatibility.swift in Sources */,
+				455B254022BD9BE40039B96A /* BTreeCursor.swift in Sources */,
+				455B254522BD9BE40039B96A /* BTreeMerger.swift in Sources */,
+				455B253A22BD9BE40039B96A /* SortedBag.swift in Sources */,
+				455B254322BD9BE40039B96A /* Map.swift in Sources */,
+				455B253F22BD9BE40039B96A /* List.swift in Sources */,
+				455B254222BD9BE40039B96A /* BTreeBuilder.swift in Sources */,
+				45D0631E22BDCC8000CD9A08 /* BinarySearchProtocol.swift in Sources */,
+				455B253B22BD9BE40039B96A /* Compatibility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,14 +612,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45A0887922BA565A000628D0 /* BTLSet.swift in Sources */,
-				45A0884822B9E529000628D0 /* SBTLSet.swift in Sources */,
-				45B81C9622B77D0300306395 /* SBTL.swift in Sources */,
-				45B81C9522B77D0300306395 /* BTL.swift in Sources */,
-				45A0887B22BA5A96000628D0 /* BTLEmptySumValueWrapper.swift in Sources */,
-				45A0884622B9E523000628D0 /* SBTLMap.swift in Sources */,
-				45A0884A22B9FC03000628D0 /* BinarySearch.swift in Sources */,
-				45A0887722BA5651000628D0 /* BTLMap.swift in Sources */,
+				45D0632322BDCC8100CD9A08 /* BTLEmptySumValueWrapper.swift in Sources */,
+				45D0632022BDCC8100CD9A08 /* BTL.swift in Sources */,
+				45D0632622BDCC8100CD9A08 /* SBTLMap.swift in Sources */,
+				45D0632922BDCC8100CD9A08 /* ArraySliceBinarySearch.swift in Sources */,
+				45D0632422BDCC8100CD9A08 /* SBTL.swift in Sources */,
+				45D0632522BDCC8100CD9A08 /* SBTLSet.swift in Sources */,
+				45D0632122BDCC8100CD9A08 /* BTLSet.swift in Sources */,
+				45D0632222BDCC8100CD9A08 /* BTLMap.swift in Sources */,
+				45D0632822BDCC8100CD9A08 /* BinarySearchProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,32 +628,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45B81C9822B77D1000306395 /* SBTL.swift in Sources */,
+				45D0631422BDCC7F00CD9A08 /* BTLSet.swift in Sources */,
+				45D0631922BDCC7F00CD9A08 /* SBTLMap.swift in Sources */,
 				45A0886F22BA0429000628D0 /* BTreeIndex.swift in Sources */,
+				45D0631822BDCC7F00CD9A08 /* SBTLSet.swift in Sources */,
 				45A0886A22BA0429000628D0 /* List.swift in Sources */,
+				45D0631C22BDCC7F00CD9A08 /* ArraySliceBinarySearch.swift in Sources */,
 				45A0886C22BA0429000628D0 /* BTree.swift in Sources */,
 				45A0886322BA0429000628D0 /* SortedSet.swift in Sources */,
-				45B81C9722B77D1000306395 /* BTL.swift in Sources */,
 				45A0886422BA0429000628D0 /* BTreeComparisons.swift in Sources */,
-				45A0884D22BA0333000628D0 /* BinarySearch.swift in Sources */,
-				45A0887E22BA5B9D000628D0 /* BTLEmptySumValueWrapper.swift in Sources */,
 				45A0887122BA0429000628D0 /* Weak.swift in Sources */,
 				45A0885122BA037D000628D0 /* FormattingUtilities.swift in Sources */,
 				45A0886D22BA0429000628D0 /* BTreeBuilder.swift in Sources */,
-				45A0887D22BA5B9D000628D0 /* BTLMap.swift in Sources */,
 				45A0886822BA0429000628D0 /* BTreeIterator.swift in Sources */,
 				45A0886E22BA0429000628D0 /* Map.swift in Sources */,
+				45D0631322BDCC7F00CD9A08 /* BTL.swift in Sources */,
 				45A0887022BA0429000628D0 /* BTreeMerger.swift in Sources */,
 				45A0886922BA0429000628D0 /* BridgedList.swift in Sources */,
 				45B81C8B22B77CE600306395 /* main.swift in Sources */,
-				45A0884C22BA0333000628D0 /* SBTLSet.swift in Sources */,
+				45D0631522BDCC7F00CD9A08 /* BTLMap.swift in Sources */,
 				45A0886722BA0429000628D0 /* BTreePath.swift in Sources */,
 				45A0887222BA0429000628D0 /* BTreeNode.swift in Sources */,
-				45A0887C22BA5B9D000628D0 /* BTLSet.swift in Sources */,
+				45D0631722BDCC7F00CD9A08 /* SBTL.swift in Sources */,
 				45A0886B22BA0429000628D0 /* BTreeCursor.swift in Sources */,
+				45D0631622BDCC7F00CD9A08 /* BTLEmptySumValueWrapper.swift in Sources */,
 				45A0886622BA0429000628D0 /* Compatibility.swift in Sources */,
 				45A0886522BA0429000628D0 /* SortedBag.swift in Sources */,
-				45A0884B22BA0333000628D0 /* SBTLMap.swift in Sources */,
+				45D0631B22BDCC7F00CD9A08 /* BinarySearchProtocol.swift in Sources */,
 				45A0885022BA037D000628D0 /* DB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -641,10 +663,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45B81CB322B781B000306395 /* SBTLMockBasedUnitTests.swift in Sources */,
-				45B81CAB22B77EF100306395 /* SBTLMock.swift in Sources */,
-				45B81CB122B77F7600306395 /* ReproducibleRPNG.swift in Sources */,
-				45B81CA022B77D2500306395 /* SBTLUnitTests.swift in Sources */,
+				45D0630122BDBD8100CD9A08 /* ReproducibleRPNG.swift in Sources */,
+				45D0630022BDBD8100CD9A08 /* SBTLMock.swift in Sources */,
+				45D0630822BDBEB000CD9A08 /* BinarySearchMock.swift in Sources */,
+				45D062FE22BDBD8100CD9A08 /* SBTLUnitTests.swift in Sources */,
+				45D062FD22BDBD8100CD9A08 /* BinarySearchTest.swift in Sources */,
+				45D062FF22BDBD8100CD9A08 /* SBTLMockBasedUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,7 +676,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45B30AC022BD0F04005B4E61 /* ReproducibleRPNG.swift in Sources */,
+				45D0630622BDBDBB00CD9A08 /* ReproducibleRPNG.swift in Sources */,
 				450F1B1D22BD0BBB00BDB822 /* String.SBTLValue.swift in Sources */,
 				45B30ABE22BD0E13005B4E61 /* SBTLMapMock.swift in Sources */,
 				45DED57E22BD058000976D25 /* SBTLMapTest.swift in Sources */,
@@ -1129,6 +1153,7 @@
 		45B81CA622B77D2500306395 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1180,7 +1205,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = SBTLUnitTests/Info.plist;
+				INFOPLIST_FILE = SBTLTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1190,7 +1215,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = Eonil.SBTLUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = Eonil.SBTLTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -1203,6 +1228,7 @@
 		45B81CA722B77D2500306395 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1248,7 +1274,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = SBTLUnitTests/Info.plist;
+				INFOPLIST_FILE = SBTLTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1257,7 +1283,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = Eonil.SBTLUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = Eonil.SBTLTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -1270,6 +1296,7 @@
 		45DED58322BD058000976D25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1343,6 +1370,7 @@
 		45DED58422BD058000976D25 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1445,7 +1473,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		45B81CA522B77D2500306395 /* Build configuration list for PBXNativeTarget "SBTLUnitTests" */ = {
+		45B81CA522B77D2500306395 /* Build configuration list for PBXNativeTarget "SBTLTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				45B81CA622B77D2500306395 /* Debug */,

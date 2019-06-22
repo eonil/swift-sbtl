@@ -35,18 +35,18 @@ enum DBColumnName: CustomStringConvertible {
 
     var description: String {
         switch self {
-        case .stdGet:       return "Swift.Dictionary Get"
-        case .stdInsert:    return "Swift.Dictionary Insert"
-        case .stdUpdate:    return "Swift.Dictionary Update"
-        case .stdRemove:    return "Swift.Dictionary Remove"
-        case .btreeGet:     return "BTree.Map Get"
-        case .btreeInsert:  return "BTree.Map Insert"
-        case .btreeUpdate:  return "BTree.Map Update"
-        case .btreeRemove:  return "BTree.Map Remove"
-        case .sbtlGet:       return "SBTLMap Get"
-        case .sbtlInsert:    return "SBTLMap Insert"
-        case .sbtlUpdate:    return "SBTLMap Update"
-        case .sbtlRemove:    return "SBTLMap Remove"
+        case .stdGet:       return "Swift.Array Get"
+        case .stdInsert:    return "Swift.Array Insert"
+        case .stdUpdate:    return "Swift.Array Update"
+        case .stdRemove:    return "Swift.Array Remove"
+        case .btreeGet:     return "BTree.List Get"
+        case .btreeInsert:  return "BTree.List Insert"
+        case .btreeUpdate:  return "BTree.List Update"
+        case .btreeRemove:  return "BTree.List Remove"
+        case .sbtlGet:       return "SBTL Get"
+        case .sbtlInsert:    return "SBTL Insert"
+        case .sbtlUpdate:    return "SBTL Update"
+        case .sbtlRemove:    return "SBTL Remove"
         }
     }
 }

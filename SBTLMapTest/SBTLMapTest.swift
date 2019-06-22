@@ -34,6 +34,31 @@ class SBTLMapTest: XCTestCase {
         XCTAssertEqual(x["bbb"], 22)
         XCTAssertEqual(x["ccc"], 33)
     }
+    func testBasicsInRandomOrder() {
+        typealias X = SBTLMap<String,Int>
+        var x = X()
+        x["ccc"] = 33
+        XCTAssertEqual(x[0].key, "ccc")
+        XCTAssertEqual(x[0].value, 33)
+        XCTAssertEqual(x["ccc"], 33)
+        x["aaa"] = 11
+        XCTAssertEqual(x[0].key, "aaa")
+        XCTAssertEqual(x[0].value, 11)
+        XCTAssertEqual(x[1].key, "ccc")
+        XCTAssertEqual(x[1].value, 33)
+        XCTAssertEqual(x["aaa"], 11)
+        XCTAssertEqual(x["ccc"], 33)
+        x["bbb"] = 22
+        XCTAssertEqual(x[0].key, "aaa")
+        XCTAssertEqual(x[0].value, 11)
+        XCTAssertEqual(x[1].key, "bbb")
+        XCTAssertEqual(x[1].value, 22)
+        XCTAssertEqual(x[2].key, "ccc")
+        XCTAssertEqual(x[2].value, 33)
+        XCTAssertEqual(x["aaa"], 11)
+        XCTAssertEqual(x["bbb"], 22)
+        XCTAssertEqual(x["ccc"], 33)
+    }
     func testCase1() {
         typealias X = SBTLMap<Int,Int>
         var x = X()
@@ -50,6 +75,28 @@ class SBTLMapTest: XCTestCase {
         XCTAssertEqual(x[2], 222)
     }
     func testCase3() {
+        let n = 100_000
+        var r = ReproducibleRPNG(n)
+        var x = SBTLMap<Int,String>()
+        var y = [Int]()
+        for _ in 0..<n {
+            let k = r.nextWithRotation()
+            x[k] = "\(k)"
+            y.append(k)
+        }
+        let a = x.impl.map({ $0.element.key })
+        let b = y.sorted()
+        XCTAssertEqual(a, b)
+        for i in 0..<n {
+            let k = a[i]
+            XCTAssertEqual(x[k], "\(k)")
+        }
+    }
+
+
+
+
+    func testCornerCase1() {
         typealias X = SBTLMap<Int,Int>
         var x = X()
         x[3617481367] = 3892534839
@@ -72,6 +119,16 @@ class SBTLMapTest: XCTestCase {
         print(m.implSortedKVs)
         m.validate()
     }
+    func testMockCase2() {
+        var m = SBTLMapMock()
+        for _ in 0..<(6440) {
+            m.insertRandom()
+        }
+        m.validate()
+        m.insert(1454468357, 3757351609)
+        XCTAssertEqual(m.impl[1469267839]?.value ?? -1, 4082850292)
+        m.validate()
+    }
     func testWithFewElements() {
         var m = SBTLMapMock()
         for i in 0..<(10_000) {
@@ -84,8 +141,12 @@ class SBTLMapTest: XCTestCase {
     }
     func testWithManyElements() {
         var m = SBTLMapMock()
-        for _ in 0..<(40_000) {
+        for i in 0..<(40_000) {
             m.insertRandom()
+            if i % 1_000 == 0 {
+                print("\(#function) #\(i) c=\(m.impl.count)")
+                m.validate()
+            }
         }
         for i in 0..<(10_000) {
             m.stepRandom()

@@ -5,7 +5,7 @@
 //  Created by Henry on 2019/06/21.
 //
 
-import Foundation
+import XCTest
 @testable import SBTL
 
 struct SBTLMapMock {
@@ -28,13 +28,16 @@ struct SBTLMapMock {
         default:    fatalError()
         }
     }
+    mutating func insert(_ k: Int, _ v: Int) {
+        sys[k] = SBTLMockValue(value: v)
+        impl[k] = SBTLMockValue(value: v)
+        XCTAssertEqual(impl[k]?.value, v)
+        insertedKeys.append(k)
+    }
     mutating func insertRandom() {
         let k = rprng.nextWithRotation()
         let v = rprng.nextWithRotation()
-        sys[k] = SBTLMockValue(value: v)
-        impl[k] = SBTLMockValue(value: v)
-        precondition(impl[k]?.value == v)
-        insertedKeys.append(k)
+        insert(k, v)
     }
     mutating func updateRandom() {
         guard insertedKeys.count > 0 else { return }
@@ -44,7 +47,7 @@ struct SBTLMapMock {
         sys[k] = SBTLMockValue(value: v)
         impl[k] = SBTLMockValue(value: v)
         insertedKeys.remove(at: i)
-        precondition(impl[k]?.value == v)
+        XCTAssertEqual(impl[k]?.value, v)
     }
     mutating func removeRandom() {
         guard insertedKeys.count > 0 else { return }
@@ -52,16 +55,18 @@ struct SBTLMapMock {
         let k = insertedKeys[i]
         sys[k] = nil
         impl[k] = nil
-        precondition(impl[k] == nil)
+        XCTAssertEqual(impl[k]?.value, nil)
         insertedKeys.remove(at: i)
     }
     mutating func validate() {
-        precondition(sys.count == impl.count)
+        XCTAssertEqual(sys.count, impl.count)
         for (k,v) in sys {
-            precondition(impl[k] == v)
+            let a = impl[k] as SBTLMockValue?
+            XCTAssertEqual(a, v)
         }
         for (k,v) in impl {
-            precondition(sys[k] == v)
+            let a = sys[k]
+            XCTAssertEqual(a, v)
         }
     }
 }

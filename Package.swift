@@ -19,8 +19,8 @@ let package = Package(
             dependencies: ["SBTL"],
             path: "SBTLBenchmark"),
         .testTarget(
-            name: "SBTLUnitTests",
+            name: "SBTLTest",
             dependencies: ["SBTL"],
-            path: "SBTLUnitTests"),
+            path: "SBTLTest"),
     ]
 )

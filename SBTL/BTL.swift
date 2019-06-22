@@ -9,8 +9,7 @@ public struct BTL<Value>:
 RandomAccessCollection,
 MutableCollection,
 RangeReplaceableCollection,
-ExpressibleByArrayLiteral,
-BinarySearchProtocol {
+ExpressibleByArrayLiteral {
     private typealias W = BTLEmptySumValueWrapper<Value>
     private var impl = SBTL<W>()
 

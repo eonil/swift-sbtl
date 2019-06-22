@@ -1,6 +1,6 @@
 //
-//  SBTLUnitTests.swift
-//  SBTLUnitTests
+//  SBTLTest.swift
+//  SBTLTest
 //
 //  Created by Henry on 2019/06/17.
 //
@@ -8,7 +8,7 @@
 import XCTest
 @testable import SBTL
 
-class SBTLUnitTests: XCTestCase {
+class SBTLTest: XCTestCase {
     func test1() {
         typealias L = SBTL<Int>
         var a = L()

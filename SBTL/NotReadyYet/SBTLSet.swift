@@ -8,7 +8,7 @@
 import Foundation
 
 /// Always sorted set.
-public struct SBTLSet<Element>:
+struct SBTLSet<Element>:
 RandomAccessCollection,
 ExpressibleByArrayLiteral where
 Element: Comparable & SBTLValueProtocol {
@@ -35,9 +35,7 @@ Element: Comparable & SBTLValueProtocol {
     /// Binary search.
     /// - Complexity: O(log2(n))
     public func firstIndex(of e: Element) -> Int? {
-        let i = impl.index(of: e, in: impl.indices, with: {$0})
-        let x = impl[i]
-        return x == e ? i : nil
+        return impl.binarySearch.index(of: e, with: {$0})
     }
     public subscript(_ i: Int) -> Element {
         get { return impl[i] }
@@ -52,7 +50,7 @@ Element: Comparable & SBTLValueProtocol {
     }
 
     public mutating func insert(_ e: Element) {
-        let i = impl.indexToPlace(e, in: impl.indices, with: {$0})
+        let i = impl.binarySearch.indexToPlace(e, with: {$0})
         impl.insert(e, at: i)
     }
     @discardableResult

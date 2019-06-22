@@ -5,7 +5,7 @@
 //  Created by Henry on 2019/06/19.
 //
 
-public struct BTLSet<Element>:
+struct BTLSet<Element>:
 RandomAccessCollection,
 ExpressibleByArrayLiteral where
 Element: Comparable {
