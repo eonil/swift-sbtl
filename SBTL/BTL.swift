@@ -33,6 +33,7 @@ ExpressibleByArrayLiteral {
     public mutating func insert(_ v: Value, at i: Int) {
         impl.insert(W(v), at: i)
     }
+    @discardableResult
     public mutating func remove(at i: Int) -> Value {
         return impl.remove(at: i).value
     }
