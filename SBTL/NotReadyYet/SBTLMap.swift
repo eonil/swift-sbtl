@@ -50,7 +50,7 @@ public extension SBTLMap {
 }
 
 // MARK: Sum Query
-public extension SBTLMap {
+public extension SBTLMap where Value.Sum: Comparable {
     func index(for w: Value.Sum) -> Int {
         return impl.index(for: w)
     }

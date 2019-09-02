@@ -41,14 +41,6 @@ Element: Comparable & SBTLValueProtocol {
         get { return impl[i] }
     }
 
-    public func index(for w: Element.Sum) -> Int {
-        return impl.index(for: w)
-    }
-    public typealias IndexAndOffset = SBTL<Element>.IndexAndOffset
-    public func indexAndOffset(for w: Element.Sum) -> IndexAndOffset {
-        return impl.indexAndOffset(for: w)
-    }
-
     public mutating func insert(_ e: Element) {
         let i = impl.binarySearch.indexToPlace(e, with: {$0})
         impl.insert(e, at: i)
@@ -57,6 +49,15 @@ Element: Comparable & SBTLValueProtocol {
     public mutating func remove(_ e: Element) -> Element? {
         guard let i = firstIndex(of: e) else { return nil }
         return impl.remove(at: i)
+    }
+}
+extension SBTLSet where Element.Sum: Comparable {
+    func index(for w: Element.Sum) -> Int {
+        return impl.index(for: w)
+    }
+    typealias IndexAndOffset = SBTL<Element>.IndexAndOffset
+    func indexAndOffset(for w: Element.Sum) -> IndexAndOffset {
+        return impl.indexAndOffset(for: w)
     }
 }
 

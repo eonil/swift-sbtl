@@ -6,7 +6,7 @@
 //
 
 public protocol SBTLValueProtocol {
-    associatedtype Sum: AdditiveArithmetic, Comparable
+    associatedtype Sum: AdditiveArithmetic
     var sum: Sum { get }
 }
 
@@ -75,7 +75,7 @@ extension SBTL {
 }
 
 // MARK: Summation Query
-public extension SBTL {
+public extension SBTL where Element.Sum: Comparable {
     /// Finds index of value that contains specified sum offset.
     func index(for w: Element.Sum) -> Int {
         return indexAndOffset(for: w).index
