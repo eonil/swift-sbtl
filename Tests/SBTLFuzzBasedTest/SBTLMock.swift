@@ -166,9 +166,3 @@ extension SBTL {
         }
     }
 }
-
-extension Int: SBTLValueProtocol {
-    public var sum: Int {
-        return self
-    }
-}

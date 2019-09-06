@@ -101,6 +101,30 @@ public extension SBTL where Element.Sum: Comparable {
                 : b.indexAndOffset(for: w - a.sum)
         }
     }
+    ///
+    
+//    func indexAndOffset<T>(for p: T, on access: (Element.Sum) -> T) -> (index:Int, offset:T) where T:Comparable & AdditiveArithmetic {
+//        precondition(p < access(sum))
+//        switch content {
+//        case .leaf(let a):
+//            var c = access(Element.Sum.zero)
+//            for (i,v) in a.enumerated() {
+//                let x = access(v.sum)
+//                let d = c + x
+//                if (c..<d).contains(p) {
+//                    let o = p - c
+//                    return (i,o)
+//                }
+//                c = d
+//            }
+//            fatalError("A bug in implementation.")
+//        case .branch(let a, let b):
+//            return p < access(a.sum)
+//                ? a.indexAndOffset(for: p, on: access)
+//                : b.indexAndOffset(for: p - access(a.sum), on: access)
+//        }
+//    }
+    
     //    public func weightRange(at i: Int) -> Range<Value.Weight> {
     //        switch content {
     //        case .leaf(let a):

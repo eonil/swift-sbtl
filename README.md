@@ -48,13 +48,13 @@ How is it Useful?
 Sometimes we need to aggregate values in specific range quickly.
 For example, let's say that you have multiple boxes with these widths. 
 
-    let widths = [100, 200, 300, 600, 100]
+    let widths = [100, 200, 300]
     
-Total length is `700`. If you want to find a box at `400` from left, 
+Total length is `600`. If you want to find a box at `188` from left, 
 you need to iterate and add all values until you find the value
 and this takes `O(n)`.
 
-    let target = 400
+    let target = 188
     for i in widths.indices.dropLast() {
         let n = widths[i]
         let n1 = widths[i+1]
@@ -66,16 +66,16 @@ and this takes `O(n)`.
 
 With `SBTL`, you can do this in `O(log(n))` time.
 
-    let target = 400
-    let widths = [100, 200, 300, 600, 100] as SBTL
-    let i = widths.index(for: target)
+    let target = 188
+    let widths = [100, 200, 300] as SBTL
+    let (index,offset) = widths.indexAndOffset(for: target)
+    // index == 1
+    // offset == 88
 
-
-
-Non-Sum Applications?
----------------------------
-If you don't want or need summation, use `BTL` type that eliminates
-summation operations time and cost to zero.
+This query follows standard index inclusion-exclision rules.
+- Query for `0` returns `(0,0)`.
+- Query for `99` returns `(0,99)`.
+- Query for `100` returns `(1,0)`.
 
 
 

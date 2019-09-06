@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "TestUtil",
+        "repositoryURL": "https://github.com/eonil/swift-test-util",
+        "state": {
+          "branch": "master",
+          "revision": "3c803bc3e2a769280ec6ac4f6dc4f5f2270b46c3",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
